@@ -29,6 +29,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Task 10: Display current time in Africa/Douala
+    function displayDoualaTime() {
+        const options = { 
+            timeZone: 'Africa/Douala', 
+            hour12: true, 
+            hour: 'numeric', 
+            minute: 'numeric', 
+            second: 'numeric',
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short'
+        };
+        const doualaTime = new Date().toLocaleTimeString('en-US', options);
+        console.log("Current time in Douala, Cameroon:", doualaTime);
+        return doualaTime;
+    }
+
     // Normalize search query
     function normalizeQuery(query) {
         const normalized = query.toLowerCase().trim();
@@ -124,9 +141,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Limit to first 2 results as per Task 8 requirement
-        const limitedResults = results.slice(0, 4);
+        const limitedResults = results.slice(0, 2);
+        const currentTime = displayDoualaTime();
         
         resultsContainer.innerHTML = `
+            <div class="time-display">
+                <i class="fas fa-clock"></i> Douala Time: ${currentTime}
+            </div>
             <div class="results-header">
                 <h3>Recommendations</h3>
             </div>
@@ -145,13 +166,26 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Clear results
+    // Clear results - Task 9 implementation
     function clearResults() {
-        destinationInput.value = '';
+        // Clear the search input field
+        if (destinationInput) {
+            destinationInput.value = '';
+            destinationInput.focus();
+        }
+        
+        // Remove all displayed search results
         const resultsContainer = document.getElementById('searchResults');
         if (resultsContainer) {
-            resultsContainer.innerHTML = '';
+            resultsContainer.style.opacity = '0';
+            setTimeout(() => {
+                resultsContainer.innerHTML = '';
+                resultsContainer.style.opacity = '1';
+            }, 200);
         }
+        
+        // Reset search interface to initial state
+        console.log('Search results cleared - Task 9 completed');
     }
 
     // Mobile menu toggle
@@ -181,4 +215,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize
     fetchTravelData();
+    displayDoualaTime();
 });

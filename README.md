@@ -137,3 +137,41 @@ Similarly, you need to create logic to match keywords entered for temples and co
 The website should display results only after the user clicks the Search button.
 
 ![Keyword Search Screenshot](./images/keyword-search-screenshot.png)
+
+### Task 8: Recommendations
+In this task, you need to fetch the details of the places you recommend based on which keyword the user enters: beach, temple, or country.
+
+For each of these three keywords, your results should display at least two recommendations, an image, and a description. The results should display dynamically just under the search bar on the right of the homepage with a high z-index.
+
+![Recommendations Display Screenshot](./images/keyword-search-screenshot.png)
+
+### Task 9: Clear button
+Create logic in your JavaScript file for a clear button to clear the results. To implement this feature, you can create a function that will be called after clicking on the clear button in the navbar.
+
+The clear button should:
+- Clear the search input field
+- Remove all displayed search results
+- Reset the search interface to its initial state
+
+![Clear Button Screenshot](./images/clear-button-screenshot.png)
+
+### Task 10: Country date and time (optional)
+In this optional task, you can create logic in your JavaScript to display the time in the country you recommend.
+
+For Example:
+
+```javascript
+const options = { timeZone: 'Africa/Douala', hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };
+const newYorkTime = new Date().toLocaleTimeString('en-US', options);
+console.log("Current time in New York:", newYorkTime);
+```
+
+This JavaScript code retrieves the current time in the New York time zone using the Date object and the toLocaleTimeString method.
+
+- `timeZone: 'Africa/Douala'` sets the time zone to New York
+- `hour12: true` specifies that the time should be displayed in 12-hour format (AM/PM)
+- `hour: 'numeric', minute: 'numeric', second: 'numeric'` indicate that the hour, minute, and second components should be displayed numerically
+- `new Date()` creates a new Date object representing the current date and time
+- `toLocaleTimeString('en-US', options)` formats the time according to the specified options
+
+![Time Zone Screenshot](./images/timezone-screenshot.png)
