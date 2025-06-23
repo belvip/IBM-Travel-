@@ -154,10 +154,10 @@ body{
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  max-width: 55rem;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   backdrop-filter: blur(10px);
   z-index: 20;
@@ -165,10 +165,6 @@ body{
 }
 
 .contact-title {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   margin-bottom: 2rem;
   color: white;
@@ -212,7 +208,6 @@ body{
   color: white;
   font-size: 1rem;
   transition: border-color 0.3s ease;
-  resize: none;
 }
 
 .form-group input::placeholder,
@@ -229,8 +224,8 @@ body{
 
 .submit-btn {
   width: 100%;
-  padding: .4rem;
-  background: rgb(21, 167, 21);
+  padding: 1rem;
+  background: #ef4444;
   color: white;
   border: none;
   border-radius: 5px;
@@ -242,7 +237,104 @@ body{
 }
 
 .submit-btn:hover {
-  background: rgb(11, 87, 11);;
+  background: #dc2626;
+}
+
+/* SEARCH RESULTS CSS */
+.search-results {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 400px;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 10px;
+  padding: 1rem;
+  z-index: 1000;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.search-results::-webkit-scrollbar {
+  display: none;
+}
+
+.results-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ef4444;
+}
+
+.results-header h3 {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.result-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.result-content {
+  color: white;
+}
+
+.result-content h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.result-type {
+  color: #ef4444;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.result-description {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.result-country {
+  color: #10b981;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.highlights {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+.no-results {
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  padding: 2rem;
 }
 
 @media screen and (max-width: 768px){
@@ -323,6 +415,11 @@ body{
   .contact-title h1 {
     font-size: 2rem;
   }
+  
+  .search-results {
+    width: 90vw;
+    right: 5vw;
+  }
 }
 
 @media screen and (max-width: 480px){
@@ -350,5 +447,10 @@ body{
   .role {
     max-width: 100px;
     font-size: 0.8rem;
+  }
+  
+  .search-results {
+    width: 95vw;
+    right: 2.5vw;
   }
 }
