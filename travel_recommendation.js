@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnSearch = document.getElementById('btnSearch');
     const btnClear = document.getElementById('btnClear');
     const destinationInput = document.getElementById('destinationInput');
+    const voiceSearchBtn = document.getElementById('voiceSearchBtn');
     
     let travelData = null;
     let menuOpen = false;
@@ -271,6 +272,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners
     if (btnSearch) btnSearch.addEventListener('click', searchRecommendations);
     if (btnClear) btnClear.addEventListener('click', clearResults);
+    if (voiceSearchBtn) voiceSearchBtn.addEventListener('click', startVoiceSearch);
+    if (voiceSearchBtn) voiceSearchBtn.addEventListener('click', startVoiceSearch);
     if (destinationInput) {
         destinationInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') searchRecommendations();
@@ -1005,6 +1008,48 @@ document.addEventListener('DOMContentLoaded', function() {
         destinationInput.value = suggestion;
         hideAutoComplete();
         searchRecommendations();
+    }
+    
+    // Voice Search functionality
+    function startVoiceSearch() {
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            alert('Voice search not supported in this browser');
+            return;
+        }
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        
+        voiceSearchBtn.classList.add('listening');
+        voiceSearchBtn.innerHTML = '<i class="fas fa-stop"></i>';
+        
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            destinationInput.value = transcript;
+            searchRecommendations();
+        };
+        
+        recognition.onerror = function(event) {
+            resetVoiceButton();
+            if (event.error === 'not-allowed') {
+                alert('Microphone access denied');
+            }
+        };
+        
+        recognition.onend = function() {
+            resetVoiceButton();
+        };
+        
+        recognition.start();
+    }
+    
+    function resetVoiceButton() {
+        voiceSearchBtn.classList.remove('listening');
+        voiceSearchBtn.innerHTML = '<i class="fas fa-microphone"></i>';
     }
 
     // Initialize
