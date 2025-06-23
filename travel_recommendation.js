@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Limit to first 2 results as per Task 8 requirement
-        const limitedResults = results.slice(0, 2);
+        const limitedResults = results.slice(0, 6);
         const currentTime = displayDoualaTime();
         
         resultsContainer.innerHTML = `

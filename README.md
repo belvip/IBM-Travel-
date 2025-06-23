@@ -1,5 +1,7 @@
 # Hands-on Lab: Travel Recommendation Web Application
 
+![Home page Screenshot](./images/home-page-screenshot.png)
+
 ## Introduction
 In this final project, you will create a webpage layout for a travel recommendation platform.
 
@@ -143,7 +145,6 @@ In this task, you need to fetch the details of the places you recommend based on
 
 For each of these three keywords, your results should display at least two recommendations, an image, and a description. The results should display dynamically just under the search bar on the right of the homepage with a high z-index.
 
-![Recommendations Display Screenshot](./images/keyword-search-screenshot.png)
 
 ### Task 9: Clear button
 Create logic in your JavaScript file for a clear button to clear the results. To implement this feature, you can create a function that will be called after clicking on the clear button in the navbar.
@@ -153,7 +154,6 @@ The clear button should:
 - Remove all displayed search results
 - Reset the search interface to its initial state
 
-![Clear Button Screenshot](./images/clear-button-screenshot.png)
 
 ### Task 10: Country date and time (optional)
 In this optional task, you can create logic in your JavaScript to display the time in the country you recommend.
@@ -175,3 +175,46 @@ This JavaScript code retrieves the current time in the New York time zone using 
 - `toLocaleTimeString('en-US', options)` formats the time according to the specified options
 
 ![Time Zone Screenshot](./images/timezone-screenshot.png)
+
+## Skills Learned Summary
+
+Throughout this travel recommendation web application project, you have successfully developed and demonstrated proficiency in the following key web development skills:
+
+### Frontend Development
+- **HTML5 Structure**: Created semantic HTML templates with proper document structure
+- **CSS3 Styling**: Implemented responsive design with custom CSS and Tailwind CSS framework
+- **Responsive Design**: Built mobile-first layouts that adapt to different screen sizes
+- **CSS Grid & Flexbox**: Used modern layout techniques for complex page structures
+
+### JavaScript Programming
+- **DOM Manipulation**: Dynamically created and modified HTML elements
+- **Event Handling**: Implemented click events, form submissions, and keyboard interactions
+- **Fetch API**: Retrieved data from JSON files using asynchronous JavaScript
+- **Array Methods**: Processed and filtered data using modern JavaScript techniques
+- **String Manipulation**: Implemented case-insensitive search with keyword variations
+
+### User Interface & Experience
+- **Navigation Systems**: Built responsive navigation with mobile hamburger menus
+- **Search Functionality**: Created dynamic search with real-time results display
+- **Form Handling**: Developed contact forms with proper validation and styling
+- **Interactive Elements**: Added hover effects, transitions, and smooth animations
+
+### Advanced Features
+- **Time Zone Integration**: Implemented international time display using JavaScript Date API
+- **Image Handling**: Managed dynamic image loading with fallback placeholders
+- **State Management**: Controlled application state for search results and menu toggles
+- **Performance Optimization**: Implemented efficient scrolling and hidden scrollbars
+
+### Design & Branding
+- **Color Theory**: Applied consistent forest green theme throughout the application
+- **Typography**: Used custom fonts and responsive text sizing
+- **Visual Hierarchy**: Created clear information architecture with proper spacing
+- **Brand Identity**: Developed cohesive visual identity with logos and consistent styling
+
+### Project Management
+- **Version Control**: Organized code structure with proper file management
+- **Documentation**: Created comprehensive README with task breakdowns
+- **Testing**: Implemented console logging for debugging and verification
+- **Deployment Preparation**: Structured project for GitHub Pages deployment
+
+This project demonstrates full-stack frontend development capabilities, combining modern web technologies to create a professional, responsive, and interactive travel recommendation platform.

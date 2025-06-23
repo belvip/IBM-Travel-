@@ -197,7 +197,7 @@ body{
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   backdrop-filter: blur(10px);
   z-index: 20;
@@ -208,6 +208,10 @@ body{
   text-align: center;
   margin-bottom: 2rem;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-title h1 {
