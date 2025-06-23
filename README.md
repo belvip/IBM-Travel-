@@ -99,6 +99,15 @@ In this task, you need to create an About Us page, which should include:
 **Note:** Make sure that you include the code for the navbar. The navbar on this page should only include Home, About Us, and Contact Us menu items, not the search bar and buttons.
 
 The screenshot below shows a sample About Us page.
-![Navigation Bar Screenshot](./images/aboutus-screenshot.png)
+![About Us Screenshot](./images/aboutus-screenshot.png)
 
+### Task 5: Contact us
+In this task, you need to create a Contact Us page, which should contain the following:
 
+A form for users in case they want to reach out
+The form should contain:
+- `<input>` boxes for name and email
+- `<textarea>` for users to write their message
+- Submit button to submit the form
+
+![Contact Us Screenshot](./images/contact-screenshot.png)

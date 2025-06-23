@@ -27,23 +27,24 @@ body{
   filter: brightness(0.3);
 }
 
-
-
 .content {
   position: relative;
   z-index: 10;
-
 }
 
 .content-wrapper{
   position: absolute;
   left: 70px;
   top: 90px;
+}
 
+.content-about{
+  position: absolute;
+  left: 50px;
+  top: 20px;
 }
 
 .title{
-
   max-width: 400px;
   padding: .5rem;
 }
@@ -52,7 +53,6 @@ body{
   font-size: clamp(2.5rem,2vw,3rem);
   font-weight: bold;
   text-transform: uppercase;
-  
 }
 
 .block{
@@ -61,10 +61,8 @@ body{
 
 .paragraph{
   color: #f8f8f8;
-  font-size: clamp(1rem,1.5vw,2rem);
   max-width: 400px;
   margin-top: 20px;
-
 }
 
 .book{
@@ -80,10 +78,12 @@ body{
 }
 
 .social{
+  position: absolute;
   display: flex;
   flex-direction: column;
   left: 10px;
   top: 320px;
+  z-index: 15;
 }
 
 .divider {
@@ -93,15 +93,262 @@ body{
   background-color: #f8f8f8;
   top: 100px;
   left: 10px;
+  z-index: 15;
 }
 
-/* .content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-} */
+/* ABOUT CSS */
+.about{
+  max-width: 56rem;
+  padding: .5rem;
+  word-wrap: break-word;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.team {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; 
+  margin-left: 50px;
+  padding: 1rem;
+  margin-top: 20px;
+}
+
+.container-team{
+  background-color: rgba(0,0,0,0.3);
+  padding: .2rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.team-role{
+  margin-left: 20px;
+}
+
+.role {
+  max-width: 115px;
+  border: none;
+  border-radius: 5px;
+  padding: .1rem;
+  text-align: center;
+  margin-top: 1rem;
+  background-color: #00008b;
+}
+
+.header{
+  padding: .5rem;
+}
+
+.header h1{
+  font-size: clamp(1rem,1.5vw,2rem);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* CONTACT CSS */
+.contact {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  z-index: 20;
+  gap: 2rem;
+}
+
+.contact-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.contact-title h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.contact-title p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.contact-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  resize: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ef4444;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: .4rem;
+  background: rgb(21, 167, 21);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.submit-btn:hover {
+  background: rgb(11, 87, 11);;
+}
+
+@media screen and (max-width: 768px){
+  .landing-page {
+    padding: 0.5rem;
+  }
+  
+  .content-wrapper {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .title {
+    max-width: 100%;
+  }
+  
+  .paragraph {
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .book {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .social {
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    left: 0;
+    top: 0;
+  }
+  
+  .divider {
+    display: none;
+  }
+  
+  .about {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .team {
+    flex-direction: column;
+    margin-left: 0;
+    padding: 1rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .team-role{
+    margin-left: 0;
+  }
+  
+  .content-about {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 1rem;
+  }
+  
+  .contact {
+    grid-template-columns: 1fr;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .contact-title h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .title h1 {
+    font-size: clamp(1.8rem, 6vw, 2rem);
+  }
+  
+  .contact {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .contact-title h1 {
+    font-size: 1.8rem;
+  }
+  
+  .about {
+    padding: 0.5rem;
+  }
+  
+  .team {
+    padding: 0.5rem;
+  }
+  
+  .role {
+    max-width: 100px;
+    font-size: 0.8rem;
+  }
+}

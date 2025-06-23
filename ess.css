@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: afacad;
+}
+
+.landing-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.3);
+}
+
+
+
+.content {
+  position: relative;
+  z-index: 10;
+
+}
+
+.content-wrapper{
+  position: absolute;
+  left: 70px;
+  top: 90px;
+
+}
+
+.content-about{
+  position: absolute;
+  left: 50px;
+  top: 20px;
+
+}
+ 
+
+.title{
+  max-width: 400px;
+  padding: .5rem;
+}
+
+.title h1{
+  font-size: clamp(2.5rem,2vw,3rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  
+}
+
+.block{
+  line-height: 1;
+}
+
+.paragraph{
+  color: #f8f8f8;
+  /* font-size: clamp(1rem,1.5vw,2rem);  */
+  max-width: 400px;
+  margin-top: 20px;
+
+}
+
+.book{
+  color: #f8f8f8;
+  font-size: clamp(0,7px, 2.5vw, 1.5rem);
+  background: green;
+  padding: .2rem;
+  border-radius: 5px;
+  margin-top: 30px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  min-width: 30px;
+}
+
+.social{
+  display: flex;
+  flex-direction: column;
+  left: 10px;
+  top: 320px;
+}
+
+.divider {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background-color: #f8f8f8;
+  top: 100px;
+  left: 10px;
+}
+
+/* ABOUT CSS */
+.about{
+  max-width: 56rem;
+  padding: .5rem;
+  word-wrap: break-word;
+  background-color: rgba(0,0,0,0.3);
+
+}
+
+
+.team {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; 
+  margin-left: 50px;
+  padding: 1rem;
+  margin-top: 20px;
+}
+
+.container-team{
+  background-color: rgba(0,0,0,0.3);
+  padding: .2rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.team-role{
+  margin-left: 20px;
+  /* padding: .4rem; */
+}
+
+.role {
+  max-width: 115px;
+  border: none;
+  border-radius: 5px;
+  padding: .1rem;
+  text-align: center;
+  margin-top: 1rem;
+  background-color: #00008b;
+}
+
+.header{
+  padding: .5rem;
+}
+
+.header h1{
+  font-size: clamp(1rem,1.5vw,2rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  
+}
+
+@media screen and (max-width: 768px){
+  .about {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .team {
+    flex-direction: column;
+    margin-left: 0;
+    padding: 1rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .team-role{
+    margin-left: 0;
+  }
+  
+  .content-about {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .about {
+    padding: 0.5rem;
+  }
+  
+  .team {
+    padding: 0.5rem;
+  }
+  
+  .role {
+    max-width: 100px;
+    font-size: 0.8rem;
+  }
+}
+
+
+/* .content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+} */
