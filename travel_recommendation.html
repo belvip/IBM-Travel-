@@ -8,6 +8,9 @@
     <link href="/dist/output.css" rel="stylesheet">
     <link href="./index.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     
 </head>
 <body >
@@ -53,29 +56,37 @@
     <main class="landing-page">
         <!-- Content Container (relative to position over the background) -->
          <div class="background-image"></div>
+        <!-- Contenu principal -->
         <div class="content">
-            <h1 class="">Discover Your Next Adventure</h1>
-            <p class="">Explore breathtaking destinations, immerse yourself in diverse cultures, and create unforgettable memories with our curated travel recommendations.</p>
-            
-            <!-- Book Now Button -->
-            <button class="">
-                Book Now
-            </button>
-            
-            <!-- Social Media Icons -->
-            <div class="flex space-x-6">
-                <a href="#" class="text-white">
-                    <i class="fab fa-facebook-f text-2xl"></i>
-                </a>
-                <a href="#" class="text-white">
-                    <i class="fab fa-twitter text-2xl"></i>
-                </a>
-                <a href="#" class="text-white">
-                    <i class="fab fa-instagram text-2xl"></i>
-                </a>
-                <a href="#" class="text-white ">
-                    <i class="fab fa-youtube text-2xl"></i>
-                </a>
+            <!-- Colonne gauche avec le texte -->
+            <div class="content-wrapper">
+                <!-- Titres -->
+                <div class="title">
+                    <h1 class="text-white">
+                        <span class="block">Explore</span>
+                        <span class="block">Dream</span>
+                        <span class="block">Destination</span>
+                    </h1>
+                </div>
+
+                <!-- Paragraphe -->
+                <p class="paragraph">
+                    It encourages exploration of unfamiliar territories, embracing diverse cultures and landscapes, while pursuing the desired destination that captivates the heart and ignites a sense of wonder.
+                </p>
+
+                <!-- Bouton -->
+                <button class="book">
+                    Book Now
+                </button>
+            </div>
+            <!-- Divider -->
+             <div class="absolute w-0.5 h-12 bg-gray-200 top-1/2 -translate-y-1/2"></div>
+            <!-- Réseaux sociaux à gauche -->
+            <div class="absolute social">
+            <a href="#" class="hover:text-teal-400 text-white"><i class="fab fa-twitter text-2xl"></i></a>
+            <a href="#" class="hover:text-teal-400 text-white"><i class="fab fa-facebook-f text-2xl"></i></a>
+            <a href="#" class="hover:text-teal-400 text-white"><i class="fab fa-instagram text-2xl"></i></a>
+            <a href="#" class="hover:text-teal-400 text-white"><i class="fab fa-youtube text-2xl"></i></a>
             </div>
         </div>
     </main>

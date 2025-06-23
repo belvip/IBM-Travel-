@@ -1,6 +1,17 @@
-/* .landing-page {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: afacad;
+}
+
+.landing-page {
   position: relative;
   min-height: 100vh;
+  padding: 1rem;
 }
 
 .background-image {
@@ -13,22 +24,75 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-} */
-
-/* .content {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  color: white;
-  padding: 1rem;
+  filter: brightness(0.3);
 }
 
-.content::before {
+
+
+.content {
+  position: relative;
+  z-index: 10;
+
+}
+
+.content-wrapper{
+  position: absolute;
+  left: 70px;
+  top: 90px;
+
+}
+
+.title{
+
+  max-width: 400px;
+  padding: .5rem;
+}
+
+.title h1{
+  font-size: clamp(2.5rem,2vw,3rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  
+}
+
+.block{
+  line-height: 1;
+}
+
+.paragraph{
+  color: #f8f8f8;
+  font-size: clamp(1rem,1.5vw,2rem);
+  max-width: 400px;
+  margin-top: 20px;
+
+}
+
+.book{
+  color: #f8f8f8;
+  font-size: 1.5rem;
+  background: green;
+  padding: .2rem;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.social{
+  display: flex;
+  flex-direction: column;
+  left: 10px;
+  top: 320px;
+}
+
+.divider {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background-color: #f8f8f8;
+  top: 100px;
+  left: 10px;
+}
+
+/* .content::before {
   content: '';
   position: absolute;
   top: 0;
