@@ -164,6 +164,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p class="result-description">${item.description}</p>
                         ${item.country ? `<p class="result-country">📍 ${item.country}</p>` : ''}
                         ${item.highlights ? `<div class="highlights"><strong>Highlights:</strong> ${item.highlights.join(', ')}</div>` : ''}
+                        ${item.activities ? `<div class="highlights"><strong>Activities:</strong> ${item.activities.join(', ')}</div>` : ''}
+                        ${item.animals ? `<div class="highlights"><strong>Animals:</strong> ${item.animals.join(', ')}</div>` : ''}
+                        ${item.period ? `<div class="highlights"><strong>Period:</strong> ${item.period}</div>` : ''}
+                        ${item.year_inscribed ? `<div class="highlights"><strong>UNESCO Year:</strong> ${item.year_inscribed}</div>` : ''}
+                        ${item.significance ? `<div class="highlights"><strong>Significance:</strong> ${item.significance}</div>` : ''}
                         <button onclick="window.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="favorite-btn ${isFavorite(item) ? 'favorited' : ''}">
                             <i class="fas fa-heart"></i> ${isFavorite(item) ? 'Saved' : 'Save'}
                         </button>

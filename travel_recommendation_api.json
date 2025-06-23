@@ -38,42 +38,78 @@
     },
     {
       "id": 3,
-      "name": "Senegal",
+      "name": "Japan",
       "cities": [
         {
-          "name": "Dakar",
-          "imageUrl": "dakar.jpg",
-          "description": "Vibrant city blending tradition and modernity.",
-          "highlights": ["Gorée Island", "African Renaissance Monument", "Pink Lake"]
+          "name": "Tokyo",
+          "imageUrl": "tokyo.jpg",
+          "description": "Ultra-modern metropolis blending tradition with cutting-edge technology.",
+          "highlights": ["Shibuya Crossing", "Senso-ji Temple", "Tokyo Skytree"]
         },
         {
-          "name": "Saint-Louis",
-          "imageUrl": "saint-louis.jpg",
-          "description": "Former colonial capital with vintage charm.",
-          "highlights": ["Faidherbe Bridge", "Fishing Quarter", "Jazz Festival"]
+          "name": "Kyoto",
+          "imageUrl": "kyoto.jpg",
+          "description": "Ancient capital with thousands of temples and traditional gardens.",
+          "highlights": ["Fushimi Inari Shrine", "Bamboo Grove", "Kiyomizu Temple"]
         }
       ]
     },
     {
       "id": 4,
-      "name": "Ethiopia",
+      "name": "Brazil",
       "cities": [
         {
-          "name": "Addis Ababa",
-          "imageUrl": "addis-ababa.jpg",
-          "description": "Africa's diplomatic capital of contrasts.",
-          "highlights": ["National Museum", "Mercato Market", "Mount Entoto"]
+          "name": "Rio de Janeiro",
+          "imageUrl": "rio.jpg",
+          "description": "Vibrant city famous for beaches, carnival, and iconic landmarks.",
+          "highlights": ["Christ the Redeemer", "Copacabana Beach", "Sugarloaf Mountain"]
         },
         {
-          "name": "Gondar",
-          "imageUrl": "gondar.jpg",
-          "description": "Ancient imperial city with medieval castles.",
-          "highlights": ["Fasil Ghebbi", "Fasilidas' Bath", "Debre Berhan Selassie Church"]
+          "name": "São Paulo",
+          "imageUrl": "sao-paulo.jpg",
+          "description": "South America's largest city with incredible cultural diversity.",
+          "highlights": ["MASP Museum", "Vila Madalena", "Municipal Market"]
         }
       ]
     },
     {
       "id": 5,
+      "name": "France",
+      "cities": [
+        {
+          "name": "Paris",
+          "imageUrl": "paris.jpg",
+          "description": "City of Light renowned for art, fashion, and romance.",
+          "highlights": ["Eiffel Tower", "Louvre Museum", "Notre-Dame Cathedral"]
+        },
+        {
+          "name": "Nice",
+          "imageUrl": "nice.jpg",
+          "description": "Mediterranean jewel on the French Riviera.",
+          "highlights": ["Promenade des Anglais", "Old Town", "Castle Hill"]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Australia",
+      "cities": [
+        {
+          "name": "Sydney",
+          "imageUrl": "sydney.jpg",
+          "description": "Harbor city with iconic architecture and stunning beaches.",
+          "highlights": ["Opera House", "Harbour Bridge", "Bondi Beach"]
+        },
+        {
+          "name": "Melbourne",
+          "imageUrl": "melbourne.jpg",
+          "description": "Cultural capital known for coffee, street art, and laneways.",
+          "highlights": ["Federation Square", "Royal Botanic Gardens", "Queen Victoria Market"]
+        }
+      ]
+    },
+    {
+      "id": 7,
       "name": "Cameroon",
       "cities": [
         {
@@ -87,12 +123,24 @@
           "imageUrl": "yaounde.jpg",
           "description": "Political capital nestled among seven hills with rich cultural heritage.",
           "highlights": ["National Museum", "Reunification Monument", "Mvog-Betsi Zoo"]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Thailand",
+      "cities": [
+        {
+          "name": "Bangkok",
+          "imageUrl": "bangkok.jpg",
+          "description": "Bustling capital with ornate temples and vibrant street life.",
+          "highlights": ["Grand Palace", "Wat Pho Temple", "Floating Markets"]
         },
         {
-          "name": "Bafoussam",
-          "imageUrl": "bafoussam.jpg",
-          "description": "Highland city known for its cool climate and traditional Bamileke culture.",
-          "highlights": ["Bamileke Palace", "Traditional Markets", "Coffee Plantations"]
+          "name": "Chiang Mai",
+          "imageUrl": "chiang-mai.jpg",
+          "description": "Northern cultural hub surrounded by mountains and temples.",
+          "highlights": ["Doi Suthep Temple", "Night Bazaar", "Elephant Sanctuary"]
         }
       ]
     }
@@ -100,124 +148,180 @@
   "historical_sites": [
     {
       "id": 1,
-      "name": "Pyramids of Meroe",
-      "country": "Sudan",
-      "imageUrl": "pyramids-meroe.jpg",
-      "description": "Royal necropolis of the Kingdom of Kush (300 BC).",
+      "name": "Machu Picchu",
+      "country": "Peru",
+      "imageUrl": "machu-picchu.jpg",
+      "description": "Ancient Incan citadel perched high in the Andes Mountains.",
       "type": "Archaeology"
     },
     {
       "id": 2,
-      "name": "Ruins of Carthage",
-      "country": "Tunisia",
-      "imageUrl": "carthage.jpg",
-      "description": "Remains of the Punic city that rivaled Rome.",
-      "type": "Archaeology"
+      "name": "Colosseum",
+      "country": "Italy",
+      "imageUrl": "colosseum.jpg",
+      "description": "Iconic Roman amphitheater and symbol of Imperial Rome.",
+      "type": "Ancient Architecture"
     },
     {
       "id": 3,
-      "name": "Timbuktu",
-      "country": "Mali",
-      "imageUrl": "timbuktu.jpg",
-      "description": "Historic intellectual center with precious manuscripts.",
-      "type": "Islamic Heritage"
+      "name": "Great Wall of China",
+      "country": "China",
+      "imageUrl": "great-wall.jpg",
+      "description": "Massive fortification stretching across northern China.",
+      "type": "Ancient Defense"
     },
     {
       "id": 4,
+      "name": "Petra",
+      "country": "Jordan",
+      "imageUrl": "petra.jpg",
+      "description": "Rose-red city carved into rock faces by the Nabataeans.",
+      "type": "Archaeology"
+    },
+    {
+      "id": 5,
+      "name": "Angkor Wat",
+      "country": "Cambodia",
+      "imageUrl": "angkor-wat.jpg",
+      "description": "Largest religious monument and temple complex in the world.",
+      "type": "Religious Heritage"
+    },
+    {
+      "id": 6,
       "name": "Foumban Royal Palace",
       "country": "Cameroon",
       "imageUrl": "foumban-palace.jpg",
-      "description": "Historic palace of the Bamoun Kingdom with traditional architecture and artifacts.",
+      "description": "Historic palace of the Bamoun Kingdom with traditional architecture.",
       "type": "Royal Heritage"
     }
   ],
   "beaches": [
     {
       "id": 1,
-      "name": "Bazaruto Archipelago",
-      "country": "Mozambique",
-      "imageUrl": "bazaruto.jpg",
-      "description": "Pristine white sand dunes and crystal-clear waters.",
-      "activities": ["Diving", "Dugong watching"]
+      "name": "Maldives",
+      "country": "Maldives",
+      "imageUrl": "maldives.jpg",
+      "description": "Tropical paradise with crystal-clear waters and overwater bungalows.",
+      "activities": ["Snorkeling", "Diving", "Water sports"]
     },
     {
       "id": 2,
-      "name": "Sidi Bouzid Beach",
-      "country": "Morocco",
-      "imageUrl": "sidi-bouzid.jpg",
-      "description": "Bohemian surf spot near Essaouira.",
-      "activities": ["Surfing", "Relaxation"]
+      "name": "Bora Bora",
+      "country": "French Polynesia",
+      "imageUrl": "bora-bora.jpg",
+      "description": "Stunning lagoon surrounded by coral reefs and volcanic peaks.",
+      "activities": ["Diving", "Jet skiing", "Romantic getaways"]
     },
     {
       "id": 3,
-      "name": "Limbe Beach",
-      "country": "Cameroon",
-      "imageUrl": "limbe-beach.jpg",
-      "description": "Black volcanic sand beach at the foot of Mount Cameroon with stunning ocean views.",
-      "activities": ["Swimming", "Volcano hiking", "Wildlife watching"]
+      "name": "Santorini Beaches",
+      "country": "Greece",
+      "imageUrl": "santorini-beach.jpg",
+      "description": "Unique volcanic beaches with dramatic cliffs and blue-domed churches.",
+      "activities": ["Swimming", "Sunset viewing", "Wine tasting"]
     },
     {
       "id": 4,
+      "name": "Copacabana Beach",
+      "country": "Brazil",
+      "imageUrl": "copacabana.jpg",
+      "description": "World-famous beach in Rio de Janeiro with vibrant beach culture.",
+      "activities": ["Beach volleyball", "Surfing", "People watching"]
+    },
+    {
+      "id": 5,
       "name": "Kribi Beach",
       "country": "Cameroon",
       "imageUrl": "kribi-beach.jpg",
-      "description": "Golden sand beaches with palm trees and the famous Lobe Falls flowing into the ocean.",
+      "description": "Golden sand beaches with palm trees and the famous Lobe Falls.",
       "activities": ["Beach relaxation", "Waterfall visits", "Fishing"]
+    },
+    {
+      "id": 6,
+      "name": "Bondi Beach",
+      "country": "Australia",
+      "imageUrl": "bondi-beach.jpg",
+      "description": "Iconic Australian beach perfect for surfing and beach culture.",
+      "activities": ["Surfing", "Coastal walks", "Beach cafes"]
     }
   ],
   "national_parks": [
     {
       "id": 1,
-      "name": "Kruger National Park",
-      "country": "South Africa",
-      "imageUrl": "kruger.jpg",
-      "description": "One of Africa's largest game reserves.",
-      "animals": ["Big Five", "Cheetahs", "African Wild Dogs"]
+      "name": "Yellowstone National Park",
+      "country": "United States",
+      "imageUrl": "yellowstone.jpg",
+      "description": "America's first national park with geysers and diverse wildlife.",
+      "animals": ["Bison", "Bears", "Wolves", "Elk"]
     },
     {
       "id": 2,
-      "name": "Virunga National Park",
-      "country": "DR Congo",
-      "imageUrl": "virunga.jpg",
-      "description": "Africa's oldest park with mountain gorillas.",
-      "animals": ["Gorillas", "Okapis", "Hippos"]
+      "name": "Serengeti National Park",
+      "country": "Tanzania",
+      "imageUrl": "serengeti.jpg",
+      "description": "Famous for the Great Migration and abundant wildlife.",
+      "animals": ["Wildebeest", "Lions", "Zebras", "Cheetahs"]
     },
     {
       "id": 3,
-      "name": "Waza National Park",
-      "country": "Cameroon",
-      "imageUrl": "waza-park.jpg",
-      "description": "Premier wildlife destination in northern Cameroon with diverse savanna animals.",
-      "animals": ["Elephants", "Lions", "Giraffes", "Antelopes", "Birds"]
+      "name": "Banff National Park",
+      "country": "Canada",
+      "imageUrl": "banff.jpg",
+      "description": "Stunning mountain landscapes with pristine lakes and glaciers.",
+      "animals": ["Mountain Goats", "Bears", "Elk", "Bighorn Sheep"]
     },
     {
       "id": 4,
-      "name": "Dja Faunal Reserve",
+      "name": "Torres del Paine",
+      "country": "Chile",
+      "imageUrl": "torres-del-paine.jpg",
+      "description": "Patagonian park with dramatic granite peaks and pristine wilderness.",
+      "animals": ["Guanacos", "Condors", "Pumas", "Flamingos"]
+    },
+    {
+      "id": 5,
+      "name": "Waza National Park",
       "country": "Cameroon",
-      "imageUrl": "dja-reserve.jpg",
-      "description": "UNESCO World Heritage rainforest reserve with pristine biodiversity.",
-      "animals": ["Gorillas", "Chimpanzees", "Forest Elephants", "Leopards"]
+      "imageUrl": "waza-park.jpg",
+      "description": "Premier wildlife destination with diverse savanna animals.",
+      "animals": ["Elephants", "Lions", "Giraffes", "Antelopes"]
     }
   ],
   "cultural_experiences": [
     {
       "id": 1,
-      "name": "Festival in the Desert",
-      "country": "Mali",
-      "imageUrl": "festival-desert.jpg",
-      "description": "Tuareg musical gathering near Timbuktu.",
-      "period": "January"
+      "name": "Oktoberfest",
+      "country": "Germany",
+      "imageUrl": "oktoberfest.jpg",
+      "description": "World's largest beer festival with traditional Bavarian culture.",
+      "period": "September-October"
     },
     {
       "id": 2,
-      "name": "Cape Town Carnival",
-      "country": "South Africa",
-      "imageUrl": "carnival-capetown.jpg",
-      "description": "Colorful parade inspired by Rio's carnival.",
-      "period": "March"
+      "name": "Diwali Festival",
+      "country": "India",
+      "imageUrl": "diwali.jpg",
+      "description": "Festival of Lights celebrating the triumph of light over darkness.",
+      "period": "October-November"
     },
     {
       "id": 3,
+      "name": "Cherry Blossom Festival",
+      "country": "Japan",
+      "imageUrl": "cherry-blossom.jpg",
+      "description": "Celebration of spring with beautiful pink cherry blossoms.",
+      "period": "March-May"
+    },
+    {
+      "id": 4,
+      "name": "Rio Carnival",
+      "country": "Brazil",
+      "imageUrl": "rio-carnival.jpg",
+      "description": "World's biggest carnival with samba parades and street parties.",
+      "period": "February-March"
+    },
+    {
+      "id": 5,
       "name": "Ngondo Festival",
       "country": "Cameroon",
       "imageUrl": "ngondo-festival.jpg",
@@ -225,33 +329,49 @@
       "period": "December"
     },
     {
-      "id": 4,
-      "name": "Nguon Festival",
-      "country": "Cameroon",
-      "imageUrl": "nguon-festival.jpg",
-      "description": "Bamoun cultural festival celebrating the kingdom's rich heritage and traditions.",
-      "period": "December"
+      "id": 6,
+      "name": "La Tomatina",
+      "country": "Spain",
+      "imageUrl": "la-tomatina.jpg",
+      "description": "World's biggest tomato fight festival in Buñol.",
+      "period": "August"
     }
   ],
   "unesco_sites": [
     {
       "id": 1,
-      "name": "Omo Valley",
-      "country": "Ethiopia",
-      "imageUrl": "omo-valley.jpg",
-      "year_inscribed": 1980,
-      "significance": "Prehistoric site and unique tribal cultures"
+      "name": "Taj Mahal",
+      "country": "India",
+      "imageUrl": "taj-mahal.jpg",
+      "year_inscribed": 1983,
+      "significance": "Masterpiece of Mughal architecture and symbol of love"
     },
     {
       "id": 2,
-      "name": "Medina of Tunis",
-      "country": "Tunisia",
-      "imageUrl": "medina-tunis.jpg",
-      "year_inscribed": 1979,
-      "significance": "Outstanding example of Islamic architecture"
+      "name": "Galápagos Islands",
+      "country": "Ecuador",
+      "imageUrl": "galapagos.jpg",
+      "year_inscribed": 1978,
+      "significance": "Living laboratory of evolution with unique wildlife"
     },
     {
       "id": 3,
+      "name": "Stonehenge",
+      "country": "United Kingdom",
+      "imageUrl": "stonehenge.jpg",
+      "year_inscribed": 1986,
+      "significance": "Prehistoric monument with mysterious ancient origins"
+    },
+    {
+      "id": 4,
+      "name": "Chichen Itza",
+      "country": "Mexico",
+      "imageUrl": "chichen-itza.jpg",
+      "year_inscribed": 1988,
+      "significance": "Pre-Columbian Maya city with iconic pyramid"
+    },
+    {
+      "id": 5,
       "name": "Dja Faunal Reserve",
       "country": "Cameroon",
       "imageUrl": "dja-unesco.jpg",
@@ -259,12 +379,12 @@
       "significance": "One of Africa's largest and best-protected rainforests"
     },
     {
-      "id": 4,
-      "name": "Sangha Trinational",
-      "country": "Cameroon",
-      "imageUrl": "sangha-trinational.jpg",
-      "year_inscribed": 2012,
-      "significance": "Transboundary conservation area with exceptional biodiversity"
+      "id": 6,
+      "name": "Great Barrier Reef",
+      "country": "Australia",
+      "imageUrl": "great-barrier-reef.jpg",
+      "year_inscribed": 1981,
+      "significance": "World's largest coral reef system with incredible marine biodiversity"
     }
   ]
 }
