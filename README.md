@@ -1,7 +1,5 @@
 # Hands-on Lab: Travel Recommendation Web Application
 
-![Home page Screenshot](./images/home-page-screenshot.png)
-
 ## Introduction
 In this final project, you will create a webpage layout for a travel recommendation platform.
 
@@ -145,6 +143,7 @@ In this task, you need to fetch the details of the places you recommend based on
 
 For each of these three keywords, your results should display at least two recommendations, an image, and a description. The results should display dynamically just under the search bar on the right of the homepage with a high z-index.
 
+![Recommendations Display Screenshot](./images/keyword-search-screenshot.png)
 
 ### Task 9: Clear button
 Create logic in your JavaScript file for a clear button to clear the results. To implement this feature, you can create a function that will be called after clicking on the clear button in the navbar.
@@ -154,6 +153,7 @@ The clear button should:
 - Remove all displayed search results
 - Reset the search interface to its initial state
 
+![Clear Button Screenshot](./images/clear-button-screenshot.png)
 
 ### Task 10: Country date and time (optional)
 In this optional task, you can create logic in your JavaScript to display the time in the country you recommend.
@@ -175,6 +175,61 @@ This JavaScript code retrieves the current time in the New York time zone using 
 - `toLocaleTimeString('en-US', options)` formats the time according to the specified options
 
 ![Time Zone Screenshot](./images/timezone-screenshot.png)
+
+## Code Explanation: Dynamic HTML Generation
+
+One of the key features in this project is the dynamic generation of HTML content using JavaScript. Here's a breakdown of the complex code section that creates search results:
+
+### Template Literals and Array Methods
+
+```javascript
+${limitedResults.map(item => `
+    <div class="result-card">
+        <img src="https://picsum.photos/400/200?random=${item.id || Math.random()}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/400x200/333/fff?text=No+Image'">
+        <div class="result-content">
+            <h4>${item.name}</h4>
+            <p class="result-type">${item.type || 'Destination'}</p>
+            <p class="result-description">${item.description}</p>
+            ${item.country ? `<p class="result-country">📍 ${item.country}</p>` : ''}
+            ${item.highlights ? `<div class="highlights"><strong>Highlights:</strong> ${item.highlights.join(', ')}</div>` : ''}
+        </div>
+    </div>
+`).join('')}
+```
+
+### How This Code Works:
+
+**1. Array.map() Method:**
+- `limitedResults.map()` - Transforms each item in the results array into HTML
+- Creates a new array where each element is an HTML string
+
+**2. Template Literals (Backticks):**
+- Uses backticks (`) instead of quotes to allow multi-line strings
+- `${variable}` syntax inserts JavaScript variables into the string
+
+**3. Conditional Rendering:**
+- `${item.country ? `<p>...</p>` : ''}` - Shows country only if it exists
+- `${item.highlights ? `<div>...</div>` : ''}` - Shows highlights only if available
+
+**4. Logical OR Operator:**
+- `${item.type || 'Destination'}` - Uses 'Destination' if type is undefined
+- `${item.id || Math.random()}` - Uses random number if no ID exists
+
+**5. Array.join() Method:**
+- `.join('')` - Combines all HTML strings into one single string
+- `item.highlights.join(', ')` - Joins highlight array with commas
+
+**6. Error Handling:**
+- `onerror="this.src='...'"` - Shows placeholder if image fails to load
+
+### Step-by-Step Process:
+1. Take array of search results
+2. Transform each result into HTML card
+3. Handle missing data with fallbacks
+4. Combine all HTML strings
+5. Insert into webpage
+
+This technique allows dynamic content creation without manually writing HTML for each result, making the code efficient and maintainable.
 
 ## Skills Learned Summary
 
