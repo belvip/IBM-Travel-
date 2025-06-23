@@ -1101,6 +1101,25 @@ body{
   100% { opacity: 1; }
 }
 
+.image-search-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.image-search-btn:hover {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.image-search-btn.processing {
+  color: #f59e0b;
+}
+
 .no-results {
   text-align: center;
   color: white;

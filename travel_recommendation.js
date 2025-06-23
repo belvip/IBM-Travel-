@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnClear = document.getElementById('btnClear');
     const destinationInput = document.getElementById('destinationInput');
     const voiceSearchBtn = document.getElementById('voiceSearchBtn');
+    const imageSearchBtn = document.getElementById('imageSearchBtn');
+    const imageUpload = document.getElementById('imageUpload');
     
     let travelData = null;
     let menuOpen = false;
@@ -273,6 +275,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (btnSearch) btnSearch.addEventListener('click', searchRecommendations);
     if (btnClear) btnClear.addEventListener('click', clearResults);
     if (voiceSearchBtn) voiceSearchBtn.addEventListener('click', startVoiceSearch);
+    if (imageSearchBtn) imageSearchBtn.addEventListener('click', () => imageUpload.click());
+    if (imageUpload) imageUpload.addEventListener('change', handleImageUpload);
     if (voiceSearchBtn) voiceSearchBtn.addEventListener('click', startVoiceSearch);
     if (destinationInput) {
         destinationInput.addEventListener('keypress', function(e) {
@@ -1050,6 +1054,38 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetVoiceButton() {
         voiceSearchBtn.classList.remove('listening');
         voiceSearchBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+    }
+    
+    // Image Search functionality
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        imageSearchBtn.classList.add('processing');
+        imageSearchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        
+        // Simulate image analysis (in real app, would use AI service)
+        setTimeout(() => {
+            const results = analyzeImage(file);
+            displayResults(results);
+            resetImageButton();
+        }, 2000);
+    }
+    
+    function analyzeImage(file) {
+        // Mock image analysis - returns destinations based on image type
+        const mockResults = [
+            { name: 'Santorini', type: 'beach', country: 'Greece', description: 'Beautiful Greek island with white buildings and blue seas.' },
+            { name: 'Maldives', type: 'beach', country: 'Maldives', description: 'Tropical paradise with crystal-clear waters.' },
+            { name: 'Bora Bora', type: 'beach', country: 'French Polynesia', description: 'Stunning lagoon with overwater bungalows.' }
+        ];
+        
+        return mockResults;
+    }
+    
+    function resetImageButton() {
+        imageSearchBtn.classList.remove('processing');
+        imageSearchBtn.innerHTML = '<i class="fas fa-camera"></i>';
     }
 
     // Initialize
