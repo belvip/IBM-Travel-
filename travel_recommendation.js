@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let travelData = null;
     let menuOpen = false;
+    let favorites = JSON.parse(localStorage.getItem('travelFavorites')) || [];
 
     // Keyword mapping for variations
     const keywordMap = {
@@ -150,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="results-header">
                 <h3>Recommendations</h3>
+                <button onclick="window.showFavorites()" class="favorites-btn">
+                    <i class="fas fa-heart"></i> My Favorites (${favorites.length})
+                </button>
             </div>
             ${limitedResults.map(item => `
                 <div class="result-card">
@@ -160,10 +164,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p class="result-description">${item.description}</p>
                         ${item.country ? `<p class="result-country">📍 ${item.country}</p>` : ''}
                         ${item.highlights ? `<div class="highlights"><strong>Highlights:</strong> ${item.highlights.join(', ')}</div>` : ''}
+                        <button onclick="window.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="favorite-btn ${isFavorite(item) ? 'favorited' : ''}">
+                            <i class="fas fa-heart"></i> ${isFavorite(item) ? 'Saved' : 'Save'}
+                        </button>
                     </div>
                 </div>
             `).join('')}
         `;
+        
+        resultsContainer.dataset.results = JSON.stringify(limitedResults);
     }
 
     // Clear results - Task 9 implementation
@@ -211,6 +220,33 @@ document.addEventListener('DOMContentLoaded', function() {
         destinationInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') searchRecommendations();
         });
+    }
+
+    // Favorites functionality
+    window.toggleFavorite = function(item) {
+        const itemId = `${item.name}-${item.country || item.type}`;
+        const existingIndex = favorites.findIndex(fav => fav.id === itemId);
+        
+        if (existingIndex > -1) {
+            favorites.splice(existingIndex, 1);
+        } else {
+            favorites.push({...item, id: itemId});
+        }
+        
+        localStorage.setItem('travelFavorites', JSON.stringify(favorites));
+        const currentResults = document.getElementById('searchResults')?.dataset.results;
+        if (currentResults) {
+            displayResults(JSON.parse(currentResults));
+        }
+    }
+    
+    function isFavorite(item) {
+        const itemId = `${item.name}-${item.country || item.type}`;
+        return favorites.some(fav => fav.id === itemId);
+    }
+    
+    window.showFavorites = function() {
+        displayResults(favorites);
     }
 
     // Initialize
