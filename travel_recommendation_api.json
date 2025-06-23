@@ -1,0 +1,174 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "name": "Morocco",
+      "cities": [
+        {
+          "name": "Marrakech",
+          "imageUrl": "marrakech.jpg",
+          "description": "Pearl of the South with vibrant souks, palaces, and lush gardens.",
+          "highlights": ["Jardin Majorelle", "Jemaa el-Fna Square", "Bahia Palace"]
+        },
+        {
+          "name": "Fes",
+          "imageUrl": "fes.jpg",
+          "description": "Imperial city home to the world's oldest university.",
+          "highlights": ["Fes Medina", "Al Quaraouiyine University", "Chouara Tanneries"]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Tanzania",
+      "cities": [
+        {
+          "name": "Zanzibar",
+          "imageUrl": "zanzibar.jpg",
+          "description": "Paradisiacal archipelago with rich Swahili heritage.",
+          "highlights": ["Stone Town", "Nungwi Beach", "Jozani Forest"]
+        },
+        {
+          "name": "Arusha",
+          "imageUrl": "arusha.jpg",
+          "description": "Gateway to Tanzania's northern safari circuit.",
+          "highlights": ["Maasai Market", "Natural History Museum"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Senegal",
+      "cities": [
+        {
+          "name": "Dakar",
+          "imageUrl": "dakar.jpg",
+          "description": "Vibrant city blending tradition and modernity.",
+          "highlights": ["Gorée Island", "African Renaissance Monument", "Pink Lake"]
+        },
+        {
+          "name": "Saint-Louis",
+          "imageUrl": "saint-louis.jpg",
+          "description": "Former colonial capital with vintage charm.",
+          "highlights": ["Faidherbe Bridge", "Fishing Quarter", "Jazz Festival"]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Ethiopia",
+      "cities": [
+        {
+          "name": "Addis Ababa",
+          "imageUrl": "addis-ababa.jpg",
+          "description": "Africa's diplomatic capital of contrasts.",
+          "highlights": ["National Museum", "Mercato Market", "Mount Entoto"]
+        },
+        {
+          "name": "Gondar",
+          "imageUrl": "gondar.jpg",
+          "description": "Ancient imperial city with medieval castles.",
+          "highlights": ["Fasil Ghebbi", "Fasilidas' Bath", "Debre Berhan Selassie Church"]
+        }
+      ]
+    }
+  ],
+  "historical_sites": [
+    {
+      "id": 1,
+      "name": "Pyramids of Meroe",
+      "country": "Sudan",
+      "imageUrl": "pyramids-meroe.jpg",
+      "description": "Royal necropolis of the Kingdom of Kush (300 BC).",
+      "type": "Archaeology"
+    },
+    {
+      "id": 2,
+      "name": "Ruins of Carthage",
+      "country": "Tunisia",
+      "imageUrl": "carthage.jpg",
+      "description": "Remains of the Punic city that rivaled Rome.",
+      "type": "Archaeology"
+    },
+    {
+      "id": 3,
+      "name": "Timbuktu",
+      "country": "Mali",
+      "imageUrl": "timbuktu.jpg",
+      "description": "Historic intellectual center with precious manuscripts.",
+      "type": "Islamic Heritage"
+    }
+  ],
+  "beaches": [
+    {
+      "id": 1,
+      "name": "Bazaruto Archipelago",
+      "country": "Mozambique",
+      "imageUrl": "bazaruto.jpg",
+      "description": "Pristine white sand dunes and crystal-clear waters.",
+      "activities": ["Diving", "Dugong watching"]
+    },
+    {
+      "id": 2,
+      "name": "Sidi Bouzid Beach",
+      "country": "Morocco",
+      "imageUrl": "sidi-bouzid.jpg",
+      "description": "Bohemian surf spot near Essaouira.",
+      "activities": ["Surfing", "Relaxation"]
+    }
+  ],
+  "national_parks": [
+    {
+      "id": 1,
+      "name": "Kruger National Park",
+      "country": "South Africa",
+      "imageUrl": "kruger.jpg",
+      "description": "One of Africa's largest game reserves.",
+      "animals": ["Big Five", "Cheetahs", "African Wild Dogs"]
+    },
+    {
+      "id": 2,
+      "name": "Virunga National Park",
+      "country": "DR Congo",
+      "imageUrl": "virunga.jpg",
+      "description": "Africa's oldest park with mountain gorillas.",
+      "animals": ["Gorillas", "Okapis", "Hippos"]
+    }
+  ],
+  "cultural_experiences": [
+    {
+      "id": 1,
+      "name": "Festival in the Desert",
+      "country": "Mali",
+      "imageUrl": "festival-desert.jpg",
+      "description": "Tuareg musical gathering near Timbuktu.",
+      "period": "January"
+    },
+    {
+      "id": 2,
+      "name": "Cape Town Carnival",
+      "country": "South Africa",
+      "imageUrl": "carnival-capetown.jpg",
+      "description": "Colorful parade inspired by Rio's carnival.",
+      "period": "March"
+    }
+  ],
+  "unesco_sites": [
+    {
+      "id": 1,
+      "name": "Omo Valley",
+      "country": "Ethiopia",
+      "imageUrl": "omo-valley.jpg",
+      "year_inscribed": 1980,
+      "significance": "Prehistoric site and unique tribal cultures"
+    },
+    {
+      "id": 2,
+      "name": "Medina of Tunis",
+      "country": "Tunisia",
+      "imageUrl": "medina-tunis.jpg",
+      "year_inscribed": 1979,
+      "significance": "Outstanding example of Islamic architecture"
+    }
+  ]
+}

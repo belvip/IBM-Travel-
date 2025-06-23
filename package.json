@@ -1,0 +1,20 @@
+{
+  "name": "travelrecommendation",
+  "version": "1.0.0",
+  "description": "<h1 class=\"text-4xl font-bold text-blue-500\">Hello Tailwind!</h1>\r     <i class='fa-solid fa-bars-staggered'></i>\r     <i class=\"fas fa-close\"></i>",
+  "main": "navigation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.1"
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+    <div class="nav-header flex flex-col md:flex-row justify-between items-center p-4">
+        <div class="flex justify-between w-full md:w-auto">
+            <div class="nav-left flex items-center">
+                <i class="fa-solid fa-plane text-red-500 mr-2"></i><span class="text-xl font-bold">TravelBoom</span>
+            </div>
+            <div class="toggle-btn md:hidden cursor-pointer">
+                <i class="fa-solid fa-bars-staggered text-xl" id="menu-open"></i>
+                <i class="fa fa-close text-xl hidden" id="menu-close"></i>
+            </div>
+        </div>
+        <nav class="nav-center hidden md:block w-full md:w-auto">
+            <ul class="links flex space-x-4 justify-center">
+                <li class="flex space-x-4">
+                    <a href="./travel_recommendation.html" class="text-white hover:text-red-500">Home</a>
+                    <a href="./about.html" class="text-white hover:text-red-500">About us</a>
+                    <a href="./contact.html" class="text-white hover:text-red-500">Contact us</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="nav-right hidden md:flex items-center space-x-2 w-full md:w-auto">
+            <li class="list-none"><input type="text" id="destinationInput" placeholder="Enter a destination or keyword" class="bg-white text-black px-3 py-1 rounded"></li>
+            <li class="list-none"><i class="fas fa-search text-white"></i></li>
+            <li class="list-none"><button id='btnSearch' class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Search</button></li>
+            <li class="list-none"><button id='btnClear' class="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600">Clear</button></li>
+        </div>
+    </div>
+
+    <script src="navigation.js"></script>
+</body>
+</html>
