@@ -189,6 +189,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button onclick="window.showFilters()" class="filters-btn">
                     <i class="fas fa-filter"></i> Filters
                 </button>
+                <button onclick="window.showMap()" class="map-btn">
+                    <i class="fas fa-map"></i> Map View
+                </button>
             </div>
             ${limitedResults.map(item => `
                 <div class="result-card">
@@ -214,6 +217,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             </button>
                             <button onclick="window.showReviewForm('${item.name}-${item.country || item.type}')" class="review-btn">
                                 <i class="fas fa-star"></i> Review
+                            </button>
+                            <button onclick="window.showLocationMap('${item.name}', '${item.country || item.type}')" class="location-btn">
+                                <i class="fas fa-map-marker-alt"></i> Location
                             </button>
                         </div>
                     </div>
@@ -268,6 +274,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (destinationInput) {
         destinationInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') searchRecommendations();
+        });
+        
+        destinationInput.addEventListener('input', function(e) {
+            showAutoComplete(e.target.value);
+        });
+        
+        destinationInput.addEventListener('focus', function(e) {
+            if (e.target.value.trim()) {
+                showAutoComplete(e.target.value);
+            }
+        });
+        
+        destinationInput.addEventListener('blur', function() {
+            setTimeout(() => hideAutoComplete(), 200);
         });
     }
 
@@ -683,6 +703,221 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         return typeActivities[item.type] || ['Cultural Tours'];
+    }
+    
+    // Map Integration functionality
+    window.showMap = function() {
+        const currentResults = document.getElementById('searchResults')?.dataset.results;
+        if (!currentResults) return;
+        
+        const results = JSON.parse(currentResults);
+        displayMapView(results);
+    }
+    
+    window.showLocationMap = function(name, location) {
+        const coordinates = getDestinationCoordinates(name, location);
+        displaySingleLocationMap(name, location, coordinates);
+    }
+    
+    function displayMapView(results) {
+        let resultsContainer = document.getElementById('searchResults');
+        
+        if (!resultsContainer) {
+            resultsContainer = document.createElement('div');
+            resultsContainer.id = 'searchResults';
+            resultsContainer.className = 'search-results';
+            const navHeader = document.querySelector('.bg-green-800');
+            if (navHeader) {
+                navHeader.style.position = 'relative';
+                navHeader.appendChild(resultsContainer);
+            } else {
+                document.body.appendChild(resultsContainer);
+            }
+        }
+        
+        const currentTime = displayDoualaTime();
+        
+        resultsContainer.innerHTML = `
+            <div class="time-display">
+                <i class="fas fa-clock"></i> Douala Time: ${currentTime}
+            </div>
+            <div class="results-header">
+                <h3>Map View</h3>
+                <button onclick="window.closeMapView()" class="close-map-btn">
+                    <i class="fas fa-times"></i> Close Map
+                </button>
+            </div>
+            <div id="mapContainer" class="map-container"></div>
+            <div class="map-legend">
+                <h4>Destinations (${results.length})</h4>
+                <div class="legend-items">
+                    ${results.slice(0, 10).map((item, index) => `
+                        <div class="legend-item" onclick="window.focusMapMarker(${index})">
+                            <span class="marker-number">${index + 1}</span>
+                            <span class="destination-name">${item.name}</span>
+                            <span class="destination-country">${item.country || item.type}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        // Initialize map after DOM is ready
+        setTimeout(() => initializeMap(results), 100);
+    }
+    
+    function displaySingleLocationMap(name, location, coordinates) {
+        const modal = document.createElement('div');
+        modal.className = 'map-modal';
+        modal.innerHTML = `
+            <div class="map-modal-content">
+                <div class="map-header">
+                    <h3>${name}</h3>
+                    <button onclick="window.closeMapModal()" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="singleMapContainer" class="single-map-container"></div>
+                <div class="map-info">
+                    <p><i class="fas fa-map-marker-alt"></i> ${location}</p>
+                    <p><i class="fas fa-globe"></i> Lat: ${coordinates.lat.toFixed(4)}, Lng: ${coordinates.lng.toFixed(4)}</p>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Initialize single location map
+        setTimeout(() => initializeSingleMap(name, coordinates), 100);
+    }
+    
+    function initializeMap(results) {
+        const mapContainer = document.getElementById('mapContainer');
+        if (!mapContainer) return;
+        
+        // Create map centered on world view
+        const map = L.map('mapContainer').setView([20, 0], 2);
+        
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        // Add markers for each destination
+        const markers = [];
+        results.slice(0, 10).forEach((item, index) => {
+            const coordinates = getDestinationCoordinates(item.name, item.country || item.type);
+            
+            const marker = L.marker([coordinates.lat, coordinates.lng])
+                .addTo(map)
+                .bindPopup(`
+                    <div class="map-popup">
+                        <h4>${item.name}</h4>
+                        <p><strong>${item.type || 'Destination'}</strong></p>
+                        <p>${item.description.substring(0, 100)}...</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${item.country || item.type}</p>
+                    </div>
+                `);
+            
+            markers.push(marker);
+        });
+        
+        // Store markers globally for focus functionality
+        window.mapMarkers = markers;
+        window.mapInstance = map;
+    }
+    
+    function initializeSingleMap(name, coordinates) {
+        const mapContainer = document.getElementById('singleMapContainer');
+        if (!mapContainer) return;
+        
+        // Create map centered on specific location
+        const map = L.map('singleMapContainer').setView([coordinates.lat, coordinates.lng], 10);
+        
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        // Add marker for the specific location
+        L.marker([coordinates.lat, coordinates.lng])
+            .addTo(map)
+            .bindPopup(`<div class="map-popup"><h4>${name}</h4></div>`)
+            .openPopup();
+    }
+    
+    function getDestinationCoordinates(name, location) {
+        // Mock coordinates for destinations (in real app, this would come from a geocoding API)
+        const coordinates = {
+            // Cities
+            'Tokyo': { lat: 35.6762, lng: 139.6503 },
+            'Paris': { lat: 48.8566, lng: 2.3522 },
+            'Sydney': { lat: -33.8688, lng: 151.2093 },
+            'Rio de Janeiro': { lat: -22.9068, lng: -43.1729 },
+            'Bangkok': { lat: 13.7563, lng: 100.5018 },
+            'Marrakech': { lat: 31.6295, lng: -7.9811 },
+            'Douala': { lat: 4.0511, lng: 9.7679 },
+            'Yaoundé': { lat: 3.8480, lng: 11.5021 },
+            
+            // Beaches
+            'Maldives': { lat: 3.2028, lng: 73.2207 },
+            'Bora Bora': { lat: -16.5004, lng: -151.7415 },
+            'Santorini Beaches': { lat: 36.3932, lng: 25.4615 },
+            'Kribi Beach': { lat: 2.9373, lng: 9.9073 },
+            
+            // Historical Sites
+            'Machu Picchu': { lat: -13.1631, lng: -72.5450 },
+            'Colosseum': { lat: 41.8902, lng: 12.4922 },
+            'Great Wall of China': { lat: 40.4319, lng: 116.5704 },
+            'Petra': { lat: 30.3285, lng: 35.4444 },
+            
+            // National Parks
+            'Yellowstone National Park': { lat: 44.4280, lng: -110.5885 },
+            'Serengeti National Park': { lat: -2.3333, lng: 34.8333 },
+            'Waza National Park': { lat: 11.3167, lng: 14.7167 }
+        };
+        
+        // Return coordinates if found, otherwise generate random coordinates
+        if (coordinates[name]) {
+            return coordinates[name];
+        }
+        
+        // Generate coordinates based on location/country
+        const countryCoordinates = {
+            'Japan': { lat: 36.2048, lng: 138.2529 },
+            'France': { lat: 46.6034, lng: 1.8883 },
+            'Australia': { lat: -25.2744, lng: 133.7751 },
+            'Brazil': { lat: -14.2350, lng: -51.9253 },
+            'Thailand': { lat: 15.8700, lng: 100.9925 },
+            'Morocco': { lat: 31.7917, lng: -7.0926 },
+            'Cameroon': { lat: 7.3697, lng: 12.3547 },
+            'United States': { lat: 37.0902, lng: -95.7129 },
+            'Tanzania': { lat: -6.3690, lng: 34.8888 }
+        };
+        
+        return countryCoordinates[location] || { lat: 0, lng: 0 };
+    }
+    
+    window.focusMapMarker = function(index) {
+        if (window.mapMarkers && window.mapMarkers[index] && window.mapInstance) {
+            const marker = window.mapMarkers[index];
+            window.mapInstance.setView(marker.getLatLng(), 8);
+            marker.openPopup();
+        }
+    }
+    
+    window.closeMapView = function() {
+        const currentResults = document.getElementById('searchResults')?.dataset.results;
+        if (currentResults) {
+            displayResults(JSON.parse(currentResults));
+        }
+    }
+    
+    window.closeMapModal = function() {
+        const modal = document.querySelector('.map-modal');
+        if (modal) {
+            modal.remove();
+        }
     }
 
     // Initialize

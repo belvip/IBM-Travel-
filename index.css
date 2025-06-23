@@ -401,6 +401,21 @@ body{
   background: #7c3aed;
 }
 
+.map-btn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.map-btn:hover {
+  background: #059669;
+}
+
 .result-card {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -525,6 +540,21 @@ body{
 
 .review-btn:hover {
   background: rgba(251, 191, 36, 0.3);
+}
+
+.location-btn {
+  background: rgba(16, 185, 129, 0.2);
+  color: white;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.location-btn:hover {
+  background: rgba(16, 185, 129, 0.3);
 }
 
 .review-summary {
@@ -808,6 +838,195 @@ body{
   background: #dc2626;
 }
 
+.map-container {
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.single-map-container {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.map-legend {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.map-legend h4 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.legend-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.marker-number {
+  background: #10b981;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.destination-name {
+  color: white;
+  font-weight: bold;
+  flex: 1;
+}
+
+.destination-country {
+  color: #10b981;
+  font-size: 0.8rem;
+}
+
+.close-map-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-map-btn:hover {
+  background: #dc2626;
+}
+
+.map-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.map-modal-content {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  color: white;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.map-header h3 {
+  color: #10b981;
+  margin: 0;
+}
+
+.map-header .close-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.map-header .close-btn:hover {
+  background: #dc2626;
+}
+
+.map-info {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.map-info p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #e5e7eb;
+}
+
+.map-info i {
+  color: #10b981;
+}
+
+.map-popup {
+  text-align: center;
+}
+
+.map-popup h4 {
+  margin: 0 0 0.5rem 0;
+  color: #10b981;
+}
+
+.map-popup p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 8px;
+}
+
+.leaflet-popup-tip {
+  background: rgba(0, 0, 0, 0.9);
+}
+
 .no-results {
   text-align: center;
   color: white;
@@ -919,12 +1138,22 @@ body{
     padding: 1.5rem;
   }
   
+  .map-modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
   .activities-grid {
     grid-template-columns: 1fr;
   }
   
   .filter-actions {
     flex-direction: column;
+  }
+  
+  .map-info {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 

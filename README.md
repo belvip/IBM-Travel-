@@ -273,3 +273,64 @@ Throughout this travel recommendation web application project, you have successf
 - **Deployment Preparation**: Structured project for GitHub Pages deployment
 
 This project demonstrates full-stack frontend development capabilities, combining modern web technologies to create a professional, responsive, and interactive travel recommendation platform.
+
+
+# Map Integration Features
+
+## Core Functionality
+- **Interactive Maps** – Powered by Leaflet.js for smooth map experience  
+- **Destination Markers** – Shows all search results on a world map  
+- **Individual Location Maps** – Detailed view for specific destinations  
+- **Clickable Legend** – Click destination names to focus on map markers  
+- **Popup Information** – Rich popups with destination details  
+
+## User Interface
+- **Green Map Button** – "Map View" button in results header  
+- **Location Buttons** – Individual "Location" button on each destination card  
+- **Professional Map Modal** – Full-screen map experience for single locations  
+- **Interactive Legend** – Numbered markers with clickable destination list  
+- **Responsive Design** – Works perfectly on all screen sizes  
+
+## Technical Implementation
+- **Leaflet.js Integration** – Professional mapping library  
+- **Real Coordinates** – Accurate coordinates for major destinations  
+- **Mock Coordinate System** – Generates coordinates for destinations without data  
+- **Map Clustering** – Shows multiple destinations on world view  
+- **Zoom Controls** – Pan, zoom, and focus on specific locations  
+
+## How It Works
+1. Search destinations (beaches, countries, etc.)  
+2. Click **"Map View"** to see all results on world map  
+3. Click legend items to focus on specific markers  
+4. Click **"Location"** button on individual cards for detailed map  
+5. Interactive popups show destination information  
+6. Close maps to return to normal results view  
+
+## Map Features
+- **World Overview** – Shows all destinations with numbered markers  
+- **Individual Focus** – Detailed maps for single destinations  
+- **Interactive Popups** – Click markers for destination info  
+- **Legend Navigation** – Click destination names to focus markers  
+- **Coordinate Display** – Shows exact latitude/longitude  
+- **Professional Styling** – Dark theme matching app design  
+
+## Destination Coverage
+- **Major Cities** – Tokyo, Paris, Sydney, Rio, Bangkok, etc.  
+- **Beaches** – Maldives, Bora Bora, Santorini, Kribi Beach  
+- **Historical Sites** – Machu Picchu, Colosseum, Great Wall, Petra  
+- **National Parks** – Yellowstone, Serengeti, Waza Park  
+- **Country Fallbacks** – Generates coordinates for any country  
+
+## Visual Features
+- **Green Theme** – Emerald color scheme for maps  
+- **Dark Popups** – Matching overall app design  
+- **Numbered Markers** – Easy legend reference  
+- **Professional Modals** – Clean layouts  
+- **Smooth Animations** – Seamless transitions  
+
+## Benefits
+- Intuitive navigation across all screen sizes  
+- Visually engaging experience for users  
+- Enhanced exploration of global destinations  
+- Highly responsive UI powered by proven tools  
+- Easy integration into existing apps or platforms  
