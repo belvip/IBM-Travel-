@@ -369,6 +369,22 @@ body{
   background: #16a34a;
 }
 
+.trip-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+.trip-btn:hover {
+  background: #2563eb;
+}
+
 .result-card {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -423,6 +439,13 @@ body{
   margin-top: 0.5rem;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
 .favorite-btn {
   background: rgba(255, 255, 255, 0.2);
   color: white;
@@ -432,7 +455,6 @@ body{
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 0.5rem;
 }
 
 .favorite-btn:hover {
@@ -447,6 +469,178 @@ body{
 
 .favorite-btn.favorited:hover {
   background: #dc2626;
+}
+
+.trip-add-btn {
+  background: rgba(59, 130, 246, 0.2);
+  color: white;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.trip-add-btn:hover {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.trip-add-btn.added {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.trip-add-btn.added:hover {
+  background: #2563eb;
+}
+
+.review-btn {
+  background: rgba(251, 191, 36, 0.2);
+  color: white;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.review-btn:hover {
+  background: rgba(251, 191, 36, 0.3);
+}
+
+.review-summary {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+}
+
+.rating-display {
+  color: #fbbf24;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.review-count {
+  color: #9ca3af;
+  font-size: 0.7rem;
+}
+
+.no-reviews {
+  color: #9ca3af;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+
+.review-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.review-modal-content {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  color: white;
+}
+
+.review-modal-content h3 {
+  margin-bottom: 1rem;
+  color: #22c55e;
+}
+
+.rating-input {
+  margin-bottom: 1rem;
+}
+
+.rating-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.stars-input {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #fbbf24;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.star:hover {
+  transform: scale(1.2);
+}
+
+.star.selected {
+  color: #f59e0b;
+}
+
+#reviewText {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  resize: vertical;
+}
+
+#reviewText::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.review-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.submit-review-btn {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-review-btn:hover {
+  background: #16a34a;
+}
+
+.cancel-btn {
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: #4b5563;
 }
 
 .no-results {
@@ -544,6 +738,15 @@ body{
   .results-header {
     flex-direction: column;
     gap: 0.5rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .review-modal-content {
+    width: 95%;
+    padding: 1.5rem;
   }
 }
 

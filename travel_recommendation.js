@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let menuOpen = false;
     let favorites = JSON.parse(localStorage.getItem('travelFavorites')) || [];
     let tripPlan = JSON.parse(localStorage.getItem('tripPlan')) || [];
+    let reviews = JSON.parse(localStorage.getItem('destinationReviews')) || {};
 
     // Keyword mapping for variations
     const keywordMap = {
@@ -119,6 +120,26 @@ document.addEventListener('DOMContentLoaded', function() {
         displayResults(results);
     }
 
+    // Get review display for destination
+    function getReviewDisplay(item) {
+        const itemId = `${item.name}-${item.country || item.type}`;
+        const itemReviews = reviews[itemId] || [];
+        
+        if (itemReviews.length === 0) {
+            return '<div class="no-reviews">No reviews yet</div>';
+        }
+        
+        const avgRating = itemReviews.reduce((sum, review) => sum + review.rating, 0) / itemReviews.length;
+        const stars = '★'.repeat(Math.round(avgRating)) + '☆'.repeat(5 - Math.round(avgRating));
+        
+        return `
+            <div class="review-summary">
+                <div class="rating-display">${stars} (${avgRating.toFixed(1)}/5)</div>
+                <div class="review-count">${itemReviews.length} review${itemReviews.length !== 1 ? 's' : ''}</div>
+            </div>
+        `;
+    }
+
     // Display results
     function displayResults(results) {
         let resultsContainer = document.getElementById('searchResults');
@@ -173,12 +194,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${item.period ? `<div class="highlights"><strong>Period:</strong> ${item.period}</div>` : ''}
                         ${item.year_inscribed ? `<div class="highlights"><strong>UNESCO Year:</strong> ${item.year_inscribed}</div>` : ''}
                         ${item.significance ? `<div class="highlights"><strong>Significance:</strong> ${item.significance}</div>` : ''}
-                        <button onclick="window.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="favorite-btn ${isFavorite(item) ? 'favorited' : ''}">
-                            <i class="fas fa-heart"></i> ${isFavorite(item) ? 'Saved' : 'Save'}
-                        </button>
-                        <button onclick="window.addToTrip(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="trip-add-btn ${isInTrip(item) ? 'added' : ''}">
-                            <i class="fas fa-plus"></i> ${isInTrip(item) ? 'In Trip' : 'Add to Trip'}
-                        </button>
+                        ${getReviewDisplay(item)}
+                        <div class="action-buttons">
+                            <button onclick="window.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="favorite-btn ${isFavorite(item) ? 'favorited' : ''}">
+                                <i class="fas fa-heart"></i> ${isFavorite(item) ? 'Saved' : 'Save'}
+                            </button>
+                            <button onclick="window.addToTrip(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="trip-add-btn ${isInTrip(item) ? 'added' : ''}">
+                                <i class="fas fa-plus"></i> ${isInTrip(item) ? 'In Trip' : 'Add to Trip'}
+                            </button>
+                            <button onclick="window.showReviewForm('${item.name}-${item.country || item.type}')" class="review-btn">
+                                <i class="fas fa-star"></i> Review
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('')}
@@ -355,6 +382,93 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultsContainer = document.getElementById('searchResults');
         if (resultsContainer) {
             resultsContainer.innerHTML = '<div class="no-results">Your trip planner is empty. Add destinations to start planning!</div>';
+        }
+    }
+
+    // Review System functionality
+    window.showReviewForm = function(itemId) {
+        const modal = document.createElement('div');
+        modal.className = 'review-modal';
+        modal.innerHTML = `
+            <div class="review-modal-content">
+                <h3>Write a Review</h3>
+                <div class="rating-input">
+                    <label>Rating:</label>
+                    <div class="stars-input">
+                        ${[1,2,3,4,5].map(i => `<span class="star" data-rating="${i}">☆</span>`).join('')}
+                    </div>
+                </div>
+                <textarea id="reviewText" placeholder="Share your experience..." rows="4"></textarea>
+                <div class="review-actions">
+                    <button onclick="window.submitReview('${itemId}')" class="submit-review-btn">Submit Review</button>
+                    <button onclick="window.closeReviewModal()" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Add star rating functionality
+        const stars = modal.querySelectorAll('.star');
+        let selectedRating = 0;
+        
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.dataset.rating);
+                updateStars(stars, selectedRating);
+            });
+        });
+        
+        function updateStars(stars, rating) {
+            stars.forEach((star, index) => {
+                star.textContent = index < rating ? '★' : '☆';
+                star.classList.toggle('selected', index < rating);
+            });
+        }
+        
+        modal.selectedRating = () => selectedRating;
+    }
+    
+    window.submitReview = function(itemId) {
+        const modal = document.querySelector('.review-modal');
+        const reviewText = document.getElementById('reviewText').value.trim();
+        const rating = modal.selectedRating();
+        
+        if (rating === 0) {
+            alert('Please select a rating');
+            return;
+        }
+        
+        if (!reviewText) {
+            alert('Please write a review');
+            return;
+        }
+        
+        if (!reviews[itemId]) {
+            reviews[itemId] = [];
+        }
+        
+        reviews[itemId].push({
+            rating: rating,
+            text: reviewText,
+            date: new Date().toLocaleDateString(),
+            id: Date.now()
+        });
+        
+        localStorage.setItem('destinationReviews', JSON.stringify(reviews));
+        window.closeReviewModal();
+        
+        // Refresh current results
+        const currentResults = document.getElementById('searchResults')?.dataset.results;
+        if (currentResults) {
+            displayResults(JSON.parse(currentResults));
+        }
+    }
+    
+    window.closeReviewModal = function() {
+        const modal = document.querySelector('.review-modal');
+        if (modal) {
+            modal.remove();
         }
     }
 
