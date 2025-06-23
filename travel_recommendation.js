@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let travelData = null;
     let menuOpen = false;
     let favorites = JSON.parse(localStorage.getItem('travelFavorites')) || [];
+    let tripPlan = JSON.parse(localStorage.getItem('tripPlan')) || [];
 
     // Keyword mapping for variations
     const keywordMap = {
@@ -154,6 +155,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button onclick="window.showFavorites()" class="favorites-btn">
                     <i class="fas fa-heart"></i> My Favorites (${favorites.length})
                 </button>
+                <button onclick="window.showTripPlan()" class="trip-btn">
+                    <i class="fas fa-route"></i> My Trip (${tripPlan.length})
+                </button>
             </div>
             ${limitedResults.map(item => `
                 <div class="result-card">
@@ -171,6 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${item.significance ? `<div class="highlights"><strong>Significance:</strong> ${item.significance}</div>` : ''}
                         <button onclick="window.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="favorite-btn ${isFavorite(item) ? 'favorited' : ''}">
                             <i class="fas fa-heart"></i> ${isFavorite(item) ? 'Saved' : 'Save'}
+                        </button>
+                        <button onclick="window.addToTrip(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="trip-add-btn ${isInTrip(item) ? 'added' : ''}">
+                            <i class="fas fa-plus"></i> ${isInTrip(item) ? 'In Trip' : 'Add to Trip'}
                         </button>
                     </div>
                 </div>
@@ -252,6 +259,103 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.showFavorites = function() {
         displayResults(favorites);
+    }
+    
+    // Trip Planner functionality
+    window.addToTrip = function(item) {
+        const itemId = `${item.name}-${item.country || item.type}`;
+        const existingIndex = tripPlan.findIndex(trip => trip.id === itemId);
+        
+        if (existingIndex > -1) {
+            tripPlan.splice(existingIndex, 1);
+        } else {
+            tripPlan.push({...item, id: itemId, order: tripPlan.length + 1});
+        }
+        
+        localStorage.setItem('tripPlan', JSON.stringify(tripPlan));
+        const currentResults = document.getElementById('searchResults')?.dataset.results;
+        if (currentResults) {
+            displayResults(JSON.parse(currentResults));
+        }
+    }
+    
+    function isInTrip(item) {
+        const itemId = `${item.name}-${item.country || item.type}`;
+        return tripPlan.some(trip => trip.id === itemId);
+    }
+    
+    window.showTripPlan = function() {
+        if (tripPlan.length === 0) {
+            const resultsContainer = document.getElementById('searchResults');
+            if (resultsContainer) {
+                resultsContainer.innerHTML = '<div class="no-results">Your trip planner is empty. Add destinations to start planning!</div>';
+            }
+            return;
+        }
+        
+        const sortedTrip = tripPlan.sort((a, b) => a.order - b.order);
+        displayTripItinerary(sortedTrip);
+    }
+    
+    function displayTripItinerary(tripItems) {
+        let resultsContainer = document.getElementById('searchResults');
+        
+        if (!resultsContainer) {
+            resultsContainer = document.createElement('div');
+            resultsContainer.id = 'searchResults';
+            resultsContainer.className = 'search-results';
+            const navHeader = document.querySelector('.bg-green-800');
+            if (navHeader) {
+                navHeader.style.position = 'relative';
+                navHeader.appendChild(resultsContainer);
+            } else {
+                document.body.appendChild(resultsContainer);
+            }
+        }
+        
+        const currentTime = displayDoualaTime();
+        
+        resultsContainer.innerHTML = `
+            <div class="time-display">
+                <i class="fas fa-clock"></i> Douala Time: ${currentTime}
+            </div>
+            <div class="results-header">
+                <h3>My Trip Itinerary</h3>
+                <button onclick="window.clearTrip()" class="clear-trip-btn">
+                    <i class="fas fa-trash"></i> Clear Trip
+                </button>
+            </div>
+            ${tripItems.map((item, index) => `
+                <div class="result-card trip-card">
+                    <div class="trip-order">Day ${index + 1}</div>
+                    <img src="https://picsum.photos/400/200?random=${item.id || Math.random()}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/400x200/333/fff?text=No+Image'">
+                    <div class="result-content">
+                        <h4>${item.name}</h4>
+                        <p class="result-type">${item.type || 'Destination'}</p>
+                        <p class="result-description">${item.description}</p>
+                        ${item.country ? `<p class="result-country">📍 ${item.country}</p>` : ''}
+                        <button onclick="window.removeFromTrip('${item.id}')" class="remove-trip-btn">
+                            <i class="fas fa-times"></i> Remove
+                        </button>
+                    </div>
+                </div>
+            `).join('')}
+        `;
+    }
+    
+    window.removeFromTrip = function(itemId) {
+        tripPlan = tripPlan.filter(trip => trip.id !== itemId);
+        localStorage.setItem('tripPlan', JSON.stringify(tripPlan));
+        window.showTripPlan();
+    }
+    
+    window.clearTrip = function() {
+        tripPlan = [];
+        localStorage.setItem('tripPlan', JSON.stringify(tripPlan));
+        const resultsContainer = document.getElementById('searchResults');
+        if (resultsContainer) {
+            resultsContainer.innerHTML = '<div class="no-results">Your trip planner is empty. Add destinations to start planning!</div>';
+        }
     }
 
     // Initialize
