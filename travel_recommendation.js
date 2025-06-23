@@ -280,6 +280,14 @@ document.addEventListener('DOMContentLoaded', function() {
             showAutoComplete(e.target.value);
         });
         
+        destinationInput.addEventListener('blur', function() {
+            setTimeout(() => hideAutoComplete(), 200);
+        });
+        
+        destinationInput.addEventListener('input', function(e) {
+            showAutoComplete(e.target.value);
+        });
+        
         destinationInput.addEventListener('focus', function(e) {
             if (e.target.value.trim()) {
                 showAutoComplete(e.target.value);
@@ -918,6 +926,85 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal) {
             modal.remove();
         }
+    }
+
+    // Auto-complete functionality
+    function showAutoComplete(query) {
+        if (!query || query.length < 2 || !travelData) {
+            hideAutoComplete();
+            return;
+        }
+        
+        const suggestions = getSearchSuggestions(query.toLowerCase());
+        if (suggestions.length === 0) {
+            hideAutoComplete();
+            return;
+        }
+        
+        let autoCompleteContainer = document.getElementById('autoComplete');
+        if (!autoCompleteContainer) {
+            autoCompleteContainer = document.createElement('div');
+            autoCompleteContainer.id = 'autoComplete';
+            autoCompleteContainer.className = 'autocomplete-container';
+            destinationInput.parentNode.appendChild(autoCompleteContainer);
+        }
+        
+        autoCompleteContainer.innerHTML = suggestions.slice(0, 6).map(suggestion => `
+            <div class="autocomplete-item" onclick="selectSuggestion('${suggestion.text}')">
+                <i class="fas ${suggestion.icon}"></i>
+                <span>${suggestion.text}</span>
+                <small>${suggestion.type}</small>
+            </div>
+        `).join('');
+        
+        autoCompleteContainer.style.display = 'block';
+    }
+    
+    function hideAutoComplete() {
+        const autoCompleteContainer = document.getElementById('autoComplete');
+        if (autoCompleteContainer) {
+            autoCompleteContainer.style.display = 'none';
+        }
+    }
+    
+    function getSearchSuggestions(query) {
+        const suggestions = [];
+        
+        // Keywords
+        const keywords = [
+            { text: 'beaches', type: 'Category', icon: 'fa-umbrella-beach' },
+            { text: 'temples', type: 'Category', icon: 'fa-place-of-worship' },
+            { text: 'countries', type: 'Category', icon: 'fa-globe' },
+            { text: 'parks', type: 'Category', icon: 'fa-tree' }
+        ];
+        
+        keywords.forEach(keyword => {
+            if (keyword.text.includes(query)) {
+                suggestions.push(keyword);
+            }
+        });
+        
+        // Countries and cities
+        if (travelData.countries) {
+            travelData.countries.forEach(country => {
+                if (country.name.toLowerCase().includes(query)) {
+                    suggestions.push({ text: country.name, type: 'Country', icon: 'fa-flag' });
+                }
+                country.cities.forEach(city => {
+                    if (city.name.toLowerCase().includes(query)) {
+                        suggestions.push({ text: city.name, type: 'City', icon: 'fa-city' });
+                    }
+                });
+            });
+        }
+        
+        return suggestions.slice(0, 6);
+    }
+    
+    window.selectSuggestion = function(suggestion) {
+        destinationInput.value = suggestion;
+        hideAutoComplete();
+        searchRecommendations();
     }
 
     // Initialize

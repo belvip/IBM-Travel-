@@ -1027,6 +1027,54 @@ body{
   background: rgba(0, 0, 0, 0.9);
 }
 
+.autocomplete-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+}
+
+.autocomplete-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.autocomplete-item:hover {
+  background-color: #f3f4f6;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item i {
+  color: #22c55e;
+  width: 16px;
+}
+
+.autocomplete-item span {
+  flex: 1;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.autocomplete-item small {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
 .no-results {
   text-align: center;
   color: white;
