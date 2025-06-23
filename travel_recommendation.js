@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resultsContainer.id = 'searchResults';
             resultsContainer.className = 'search-results';
             // Position under the search bar
-            const navHeader = document.querySelector('.bg-gray-700');
+            const navHeader = document.querySelector('.bg-green-800');
             if (navHeader) {
                 navHeader.style.position = 'relative';
                 navHeader.appendChild(resultsContainer);
