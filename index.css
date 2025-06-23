@@ -1120,6 +1120,21 @@ body{
   color: #f59e0b;
 }
 
+.nearby-btn {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nearby-btn:hover {
+  background: #ea580c;
+}
+
 .no-results {
   text-align: center;
   color: white;

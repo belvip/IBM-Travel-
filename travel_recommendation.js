@@ -195,6 +195,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button onclick="window.showMap()" class="map-btn">
                     <i class="fas fa-map"></i> Map View
                 </button>
+                <button onclick="window.showNearbyRecommendations()" class="nearby-btn">
+                    <i class="fas fa-location-arrow"></i> Nearby
+                </button>
             </div>
             ${limitedResults.map(item => `
                 <div class="result-card">
@@ -210,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${item.period ? `<div class="highlights"><strong>Period:</strong> ${item.period}</div>` : ''}
                         ${item.year_inscribed ? `<div class="highlights"><strong>UNESCO Year:</strong> ${item.year_inscribed}</div>` : ''}
                         ${item.significance ? `<div class="highlights"><strong>Significance:</strong> ${item.significance}</div>` : ''}
+                        ${item.distance ? `<div class="highlights"><strong>Distance:</strong> ${item.distance} km away</div>` : ''}
                         ${getReviewDisplay(item)}
                         <div class="action-buttons">
                             <button onclick="window.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="favorite-btn ${isFavorite(item) ? 'favorited' : ''}">
@@ -1086,6 +1090,85 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetImageButton() {
         imageSearchBtn.classList.remove('processing');
         imageSearchBtn.innerHTML = '<i class="fas fa-camera"></i>';
+    }
+    
+    // Nearby Recommendations functionality
+    window.showNearbyRecommendations = function() {
+        if (!navigator.geolocation) {
+            alert('Geolocation is not supported by this browser');
+            return;
+        }
+        
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+                const nearbyResults = findNearbyDestinations(userLat, userLng);
+                displayResults(nearbyResults);
+            },
+            function(error) {
+                if (error.code === error.PERMISSION_DENIED) {
+                    alert('Location access denied. Please enable location services.');
+                } else {
+                    alert('Unable to get your location. Please try again.');
+                }
+            }
+        );
+    }
+    
+    function findNearbyDestinations(userLat, userLng) {
+        if (!travelData) return [];
+        
+        const nearbyDestinations = [];
+        const maxDistance = 500; // km radius
+        
+        // Check all destinations
+        const allDestinations = [];
+        
+        // Add countries/cities
+        if (travelData.countries) {
+            travelData.countries.forEach(country => {
+                country.cities.forEach(city => {
+                    allDestinations.push({...city, type: 'city', country: country.name});
+                });
+            });
+        }
+        
+        // Add other categories
+        ['beaches', 'historical_sites', 'national_parks', 'cultural_experiences', 'unesco_sites'].forEach(category => {
+            if (travelData[category]) {
+                travelData[category].forEach(item => {
+                    allDestinations.push({...item, type: category.replace('_', ' ')});
+                });
+            }
+        });
+        
+        // Calculate distances and filter nearby
+        allDestinations.forEach(destination => {
+            const destCoords = getDestinationCoordinates(destination.name, destination.country || destination.type);
+            const distance = calculateDistance(userLat, userLng, destCoords.lat, destCoords.lng);
+            
+            if (distance <= maxDistance) {
+                nearbyDestinations.push({
+                    ...destination,
+                    distance: Math.round(distance)
+                });
+            }
+        });
+        
+        // Sort by distance
+        return nearbyDestinations.sort((a, b) => a.distance - b.distance).slice(0, 10);
+    }
+    
+    function calculateDistance(lat1, lng1, lat2, lng2) {
+        const R = 6371; // Earth's radius in km
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLng = (lng2 - lng1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLng/2) * Math.sin(dLng/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
     }
 
     // Initialize
