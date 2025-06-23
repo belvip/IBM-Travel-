@@ -71,6 +71,30 @@
           "highlights": ["Fasil Ghebbi", "Fasilidas' Bath", "Debre Berhan Selassie Church"]
         }
       ]
+    },
+    {
+      "id": 5,
+      "name": "Cameroon",
+      "cities": [
+        {
+          "name": "Douala",
+          "imageUrl": "douala.jpg",
+          "description": "Economic capital and largest city with vibrant markets and cultural diversity.",
+          "highlights": ["Bonanjo District", "Akwa Palace", "Douala Grand Mall"]
+        },
+        {
+          "name": "Yaoundé",
+          "imageUrl": "yaounde.jpg",
+          "description": "Political capital nestled among seven hills with rich cultural heritage.",
+          "highlights": ["National Museum", "Reunification Monument", "Mvog-Betsi Zoo"]
+        },
+        {
+          "name": "Bafoussam",
+          "imageUrl": "bafoussam.jpg",
+          "description": "Highland city known for its cool climate and traditional Bamileke culture.",
+          "highlights": ["Bamileke Palace", "Traditional Markets", "Coffee Plantations"]
+        }
+      ]
     }
   ],
   "historical_sites": [
@@ -97,6 +121,14 @@
       "imageUrl": "timbuktu.jpg",
       "description": "Historic intellectual center with precious manuscripts.",
       "type": "Islamic Heritage"
+    },
+    {
+      "id": 4,
+      "name": "Foumban Royal Palace",
+      "country": "Cameroon",
+      "imageUrl": "foumban-palace.jpg",
+      "description": "Historic palace of the Bamoun Kingdom with traditional architecture and artifacts.",
+      "type": "Royal Heritage"
     }
   ],
   "beaches": [
@@ -115,6 +147,22 @@
       "imageUrl": "sidi-bouzid.jpg",
       "description": "Bohemian surf spot near Essaouira.",
       "activities": ["Surfing", "Relaxation"]
+    },
+    {
+      "id": 3,
+      "name": "Limbe Beach",
+      "country": "Cameroon",
+      "imageUrl": "limbe-beach.jpg",
+      "description": "Black volcanic sand beach at the foot of Mount Cameroon with stunning ocean views.",
+      "activities": ["Swimming", "Volcano hiking", "Wildlife watching"]
+    },
+    {
+      "id": 4,
+      "name": "Kribi Beach",
+      "country": "Cameroon",
+      "imageUrl": "kribi-beach.jpg",
+      "description": "Golden sand beaches with palm trees and the famous Lobe Falls flowing into the ocean.",
+      "activities": ["Beach relaxation", "Waterfall visits", "Fishing"]
     }
   ],
   "national_parks": [
@@ -133,6 +181,22 @@
       "imageUrl": "virunga.jpg",
       "description": "Africa's oldest park with mountain gorillas.",
       "animals": ["Gorillas", "Okapis", "Hippos"]
+    },
+    {
+      "id": 3,
+      "name": "Waza National Park",
+      "country": "Cameroon",
+      "imageUrl": "waza-park.jpg",
+      "description": "Premier wildlife destination in northern Cameroon with diverse savanna animals.",
+      "animals": ["Elephants", "Lions", "Giraffes", "Antelopes", "Birds"]
+    },
+    {
+      "id": 4,
+      "name": "Dja Faunal Reserve",
+      "country": "Cameroon",
+      "imageUrl": "dja-reserve.jpg",
+      "description": "UNESCO World Heritage rainforest reserve with pristine biodiversity.",
+      "animals": ["Gorillas", "Chimpanzees", "Forest Elephants", "Leopards"]
     }
   ],
   "cultural_experiences": [
@@ -151,6 +215,22 @@
       "imageUrl": "carnival-capetown.jpg",
       "description": "Colorful parade inspired by Rio's carnival.",
       "period": "March"
+    },
+    {
+      "id": 3,
+      "name": "Ngondo Festival",
+      "country": "Cameroon",
+      "imageUrl": "ngondo-festival.jpg",
+      "description": "Traditional water festival of the Sawa people celebrating the Wouri River.",
+      "period": "December"
+    },
+    {
+      "id": 4,
+      "name": "Nguon Festival",
+      "country": "Cameroon",
+      "imageUrl": "nguon-festival.jpg",
+      "description": "Bamoun cultural festival celebrating the kingdom's rich heritage and traditions.",
+      "period": "December"
     }
   ],
   "unesco_sites": [
@@ -169,6 +249,22 @@
       "imageUrl": "medina-tunis.jpg",
       "year_inscribed": 1979,
       "significance": "Outstanding example of Islamic architecture"
+    },
+    {
+      "id": 3,
+      "name": "Dja Faunal Reserve",
+      "country": "Cameroon",
+      "imageUrl": "dja-unesco.jpg",
+      "year_inscribed": 1987,
+      "significance": "One of Africa's largest and best-protected rainforests"
+    },
+    {
+      "id": 4,
+      "name": "Sangha Trinational",
+      "country": "Cameroon",
+      "imageUrl": "sangha-trinational.jpg",
+      "year_inscribed": 2012,
+      "significance": "Transboundary conservation area with exceptional biodiversity"
     }
   ]
 }
