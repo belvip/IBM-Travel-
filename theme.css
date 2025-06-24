@@ -1,0 +1,115 @@
+/* Dark/Light Theme Styles */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --card-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1f2937;
+    --bg-secondary: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-color: #4b5563;
+    --card-bg: #374151;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Apply theme variables */
+body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hero section dark theme overlay */
+[data-theme="dark"] .landing-page {
+    position: relative;
+}
+
+[data-theme="dark"] .landing-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(31, 41, 55, 0.8);
+    z-index: 1;
+}
+
+[data-theme="dark"] .content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Search results styling */
+.search-results {
+    background-color: var(--bg-primary) !important;
+}
+
+.result-card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 4px 6px var(--shadow) !important;
+}
+
+.result-card h4 {
+    color: var(--text-primary) !important;
+}
+
+.result-card p {
+    color: var(--text-secondary) !important;
+}
+
+.time-display {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.results-header {
+    background-color: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.no-results {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Modal backgrounds */
+.weather-modal-content,
+.review-modal-content,
+.filters-modal-content,
+.currency-modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Theme toggle buttons */
+#themeToggle,
+#themeToggleMobile {
+    background: rgba(255,255,255,0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#themeToggle:hover,
+#themeToggleMobile:hover {
+    background: rgba(255,255,255,0.3) !important;
+}
