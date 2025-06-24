@@ -14,7 +14,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
+    <style>
+        #languageSelect option, #languageSelectDesktop option {
+            background-color: #1f2937 !important;
+            color: white !important;
+        }
+    </style>
 </head>
 <body >
     <div class="fixed top-0 left-0 right-0 z-50 bg-green-800 flex flex-col md:flex-row justify-between items-center p-4">
@@ -24,7 +29,7 @@
                 <span class="text-white text-xl font-bold">TravelBoom</span>
             </div>
             <div class="flex items-center space-x-2 md:hidden">
-                <select id="languageSelect" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 4px; font-size: 12px;">
+                <select id="languageSelect" style="background: #1f2937; color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 4px; font-size: 12px;">
                     <option value="en">🇺🇸 EN</option>
                     <option value="fr">🇫🇷 FR</option>
                     <option value="es">🇪🇸 ES</option>
@@ -50,7 +55,7 @@
                     <a href="./contact.html" class="nav-link text-white hover:text-gray-300" data-translate="contact">Contact</a>
                 </li>
                 <li>
-                    <select id="languageSelectDesktop" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 6px; margin-right: 8px;">
+                    <select id="languageSelectDesktop" style="background: #1f2937; color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 6px; margin-right: 8px;">
                         <option value="en">🇺🇸 EN</option>
                         <option value="fr">🇫🇷 FR</option>
                         <option value="es">🇪🇸 ES</option>

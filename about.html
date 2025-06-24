@@ -8,10 +8,16 @@
     <link href="/dist/output.css" rel="stylesheet">
     <link href="./index.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css" />
+    <link href="./theme.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    
+    <style>
+        #languageSelect option, #languageSelectDesktop option {
+            background-color: #1f2937 !important;
+            color: white !important;
+        }
+    </style>
 </head>
 <body >
     <div class="fixed top-0 left-0 right-0 z-50 bg-green-800 flex flex-col md:flex-row justify-between items-center p-4">
@@ -20,21 +26,43 @@
                 <i class="fa-solid fa-plane text-white text-2xl"></i>
                 <span class="text-white text-xl font-bold">TravelBoom</span>
             </div>
-            <button id="mobileMenuButton" class="text-white md:hidden">
-                <i class="fa-solid fa-bars-staggered text-xl"></i>
-            </button>
+            <div class="flex items-center space-x-2 md:hidden">
+                <select id="languageSelect" style="background: #1f2937; color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 4px; font-size: 12px;">
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="fr">🇫🇷 FR</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <button id="themeToggleMobile" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="mobileMenuButton" class="text-white">
+                    <i class="fa-solid fa-bars-staggered text-xl"></i>
+                </button>
+            </div>
         </div>
 
         <nav id="navCenter" class="hidden md:block mb-4 md:mb-0">
-            <ul class="links flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
+            <ul class="links flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center">
                 <li>
-                    <a href="./index.html" class="nav-link text-white hover:text-gray-300">Home</a>
+                    <a href="./index.html" class="nav-link text-white hover:text-gray-300" data-translate="home">Home</a>
                 </li>
                 <li>
-                    <a href="./about.html" class="nav-link active text-white hover:text-gray-300">About</a>
+                    <a href="./about.html" class="nav-link active text-white hover:text-gray-300" data-translate="about">About</a>
                 </li>
                 <li>
-                    <a href="./contact.html" class="nav-link text-white hover:text-gray-300">Contact</a>
+                    <a href="./contact.html" class="nav-link text-white hover:text-gray-300" data-translate="contact">Contact</a>
+                </li>
+                <li>
+                    <select id="languageSelectDesktop" style="background: #1f2937; color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 6px; margin-right: 8px;">
+                        <option value="en">🇺🇸 EN</option>
+                        <option value="fr">🇫🇷 FR</option>
+                        <option value="es">🇪🇸 ES</option>
+                    </select>
+                </li>
+                <li>
+                    <button id="themeToggle" title="Toggle Theme" style="background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </li>
             </ul>
         </nav>
@@ -44,10 +72,11 @@
                 <input type="text" 
                     id="destinationInput" 
                     placeholder="Search destinations"
+                    data-translate="searchPlaceholder"
                     class="text-black focus:outline-none focus:ring-0 max-w-64 lg:w-80 text-sm md:">
                 <i class="fas fa-search text-gray-500 text-sm"></i>
-                <button id='btnSearch' class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition text-sm font-medium">Search</button>
-                <button id='btnClear' class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition text-sm font-medium">Clear</button>
+                <button id='btnSearch' class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition text-sm font-medium" data-translate="search">Search</button>
+                <button id='btnClear' class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition text-sm font-medium" data-translate="clear">Clear</button>
             </div>
         </div>
     </div>
@@ -62,27 +91,26 @@
             <div class="content-about">
                 <!-- Titres -->
                 <div class="title">
-                    <h1 class="text-white">About us</h1>
+                    <h1 class="text-white" data-translate="aboutUs">About us</h1>
                 </div>
 
                <div class="mx-auto text-white about">
-                    <p class="text-lg leading-relaxed mb-6">
+                    <p class="text-lg leading-relaxed mb-6" data-translate="aboutPara1">
                         Welcome to TravelBoom, your premier destination for discovering extraordinary travel experiences around the world. Founded with a passion for exploration and cultural discovery, we specialize in curating personalized travel recommendations that transform ordinary trips into unforgettable adventures.
                     </p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6" data-translate="aboutPara2">
                         Our mission is to inspire and empower travelers to explore diverse cultures, breathtaking landscapes, and hidden gems across the globe. We believe that travel is not just about visiting new places, but about creating meaningful connections and lasting memories that enrich your life.
                     </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
+                    <p class="text-lg text-gray-700 leading-relaxed" data-translate="aboutPara3">
                         With years of expertise in the travel industry, TravelBoom combines cutting-edge technology with personalized service to deliver recommendations tailored to your unique preferences and travel style.
                     </p>
                 </div>
 
                 <div class="team">
-
                     <div class="header">
                         <h1 class="text-white">
-                            <span class="block">Our</span>
-                            <span class="block">Team</span>
+                            <span class="block" data-translate="our">Our</span>
+                            <span class="block" data-translate="team">Team</span>
                         </h1>
                     </div>
 
@@ -94,7 +122,7 @@
                             </div>
                             <div class="team-role">
                                 <h3 class="text-xl font-bold text-white">Sarah Johnson</h3>
-                                <p class="text-white">Sara is responsible for</p>
+                                <p class="text-white" data-translate="sarahRole">Sara is responsible for</p>
                                 <p class="role font-semibold text-white">CEO</p>
                             </div>
                         </div>
@@ -105,8 +133,8 @@
                             </div>
                             <div class="team-role">
                                 <h3 class="text-xl font-bold text-white">Celina Thomas</h3>
-                                <p class="text-white">Celina Thomas is responsible for</p>
-                                <p class="role font-semibold text-white">Team Lead</p>
+                                <p class="text-white" data-translate="celinaRole">Celina Thomas is responsible for</p>
+                                <p class="role font-semibold text-white" data-translate="teamLead">Team Lead</p>
                             </div>
                         </div>
                         <div class="container-team">
@@ -115,13 +143,12 @@
                             </div>
                             <div class="team-role">
                                 <h3 class="text-xl font-bold text-white">Mike Tyson</h3>
-                                <p class="text-white">Mike Tyson is responsible for</p>
-                                <p class="role font-semibold text-white">Delivery Head</p>
+                                <p class="text-white" data-translate="mikeRole">Mike Tyson is responsible for</p>
+                                <p class="role font-semibold text-white" data-translate="deliveryHead">Delivery Head</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- Divider -->
@@ -135,6 +162,9 @@
             </div>
         </section>
     </main>
+    <script src="./translations.js"></script>
     <script src="./travel_recommendation.js"></script>
+    <script src="./hamburger_menu.js"></script>
+    <script src="./theme_switcher.js"></script>
 </body>
 </html>

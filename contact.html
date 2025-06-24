@@ -8,10 +8,16 @@
     <link href="/dist/output.css" rel="stylesheet">
     <link href="./index.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css" />
+    <link href="./theme.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    
+    <style>
+        #languageSelect option, #languageSelectDesktop option {
+            background-color: #1f2937 !important;
+            color: white !important;
+        }
+    </style>
 </head>
 <body >
     <div class="fixed top-0 left-0 right-0 z-50 bg-green-800 flex flex-col md:flex-row justify-between items-center p-4">
@@ -20,21 +26,43 @@
                 <i class="fa-solid fa-plane text-white text-2xl"></i>
                 <span class="text-white text-xl font-bold">TravelBoom</span>
             </div>
-            <button id="mobileMenuButton" class="text-white md:hidden">
-                <i class="fa-solid fa-bars-staggered text-xl"></i>
-            </button>
+            <div class="flex items-center space-x-2 md:hidden">
+                <select id="languageSelect" style="background: #1f2937; color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 4px; font-size: 12px;">
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="fr">🇫🇷 FR</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <button id="themeToggleMobile" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="mobileMenuButton" class="text-white">
+                    <i class="fa-solid fa-bars-staggered text-xl"></i>
+                </button>
+            </div>
         </div>
 
         <nav id="navCenter" class="hidden md:block mb-4 md:mb-0">
-            <ul class="links flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
+            <ul class="links flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center">
                 <li>
-                    <a href="./index.html" class="nav-link text-white hover:text-gray-300">Home</a>
+                    <a href="./index.html" class="nav-link text-white hover:text-gray-300" data-translate="home">Home</a>
                 </li>
                 <li>
-                    <a href="./about.html" class="nav-link text-white hover:text-gray-300">About</a>
+                    <a href="./about.html" class="nav-link text-white hover:text-gray-300" data-translate="about">About</a>
                 </li>
                 <li>
-                    <a href="./contact.html" class="nav-link active text-white hover:text-gray-300">Contact</a>
+                    <a href="./contact.html" class="nav-link active text-white hover:text-gray-300" data-translate="contact">Contact</a>
+                </li>
+                <li>
+                    <select id="languageSelectDesktop" style="background: #1f2937; color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 6px; margin-right: 8px;">
+                        <option value="en">🇺🇸 EN</option>
+                        <option value="fr">🇫🇷 FR</option>
+                        <option value="es">🇪🇸 ES</option>
+                    </select>
+                </li>
+                <li>
+                    <button id="themeToggle" title="Toggle Theme" style="background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </li>
             </ul>
         </nav>
@@ -44,14 +72,14 @@
                 <input type="text" 
                     id="destinationInput" 
                     placeholder="Search destinations"
+                    data-translate="searchPlaceholder"
                     class="text-black focus:outline-none focus:ring-0 max-w-64 lg:w-80 text-sm md:">
                 <i class="fas fa-search text-gray-500 text-sm"></i>
-                <button id='btnSearch' class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition text-sm font-medium">Search</button>
-                <button id='btnClear' class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition text-sm font-medium">Clear</button>
+                <button id='btnSearch' class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition text-sm font-medium" data-translate="search">Search</button>
+                <button id='btnClear' class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition text-sm font-medium" data-translate="clear">Clear</button>
             </div>
         </div>
     </div>
-
 
     <!-- Hero Section -->
     <main class="landing-page">
@@ -62,28 +90,28 @@
             <!-- Colonne gauche avec le texte -->
             <div class="contact">
                 <div class="contact-title">
-                    <h1>Contact Us</h1>
-                    <p>Get in touch with us</p>
+                    <h1 data-translate="contactUs">Contact Us</h1>
+                    <p data-translate="getInTouch">Get in touch with us</p>
                 </div>
 
                 <div class="contact-form">
                     <form>
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required/>
+                            <label for="name" data-translate="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" data-translate="namePlaceholder" required/>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your email" required/>
+                            <label for="email" data-translate="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your email" data-translate="emailPlaceholder" required/>
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+                            <label for="message" data-translate="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your message" data-translate="messagePlaceholder" rows="5" required></textarea>
                         </div>
                         
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <button type="submit" class="submit-btn" data-translate="sendMessage">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -99,6 +127,9 @@
             </div>
         </section>
     </main>
+    <script src="./translations.js"></script>
     <script src="./travel_recommendation.js"></script>
+    <script src="./hamburger_menu.js"></script>
+    <script src="./theme_switcher.js"></script>
 </body>
 </html>
