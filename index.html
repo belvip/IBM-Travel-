@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travel Bloom</title>
+    <link rel="preload" href="./travel_recommendation_api.json" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="./translations.js" as="script">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/dist/output.css" rel="stylesheet">
     <link href="./index.css" rel="stylesheet">
@@ -13,11 +15,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
     <style>
         #languageSelect option, #languageSelectDesktop option {
             background-color: #1f2937 !important;
             color: white !important;
+        }
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .lazy.loaded {
+            opacity: 1;
         }
     </style>
 </head>
@@ -133,6 +142,7 @@
             </div>
         </div>
     </main>
+    <script src="./performance.js"></script>
     <script src="./translations.js"></script>
     <script src="./travel_recommendation.js"></script>
     <script src="./currency_converter.js"></script>
