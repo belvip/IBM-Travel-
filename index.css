@@ -621,6 +621,112 @@ body{
   background: rgba(16, 185, 129, 0.3);
 }
 
+.weather-btn {
+  background: rgba(59, 130, 246, 0.2);
+  color: white;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.weather-btn:hover {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.weather-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.weather-modal-content {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  color: white;
+  text-align: center;
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.weather-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.weather-header .close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-main {
+  margin-bottom: 2rem;
+}
+
+.weather-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.weather-temp {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.weather-condition {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.weather-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.weather-item i {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.weather-item span {
+  font-size: 0.9rem;
+}
+
 .review-summary {
   background: rgba(0, 0, 0, 0.3);
   padding: 0.5rem;
@@ -1298,6 +1404,15 @@ body{
   .map-modal-content {
     width: 95%;
     padding: 1.5rem;
+  }
+  
+  .weather-modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .weather-details {
+    grid-template-columns: 1fr;
   }
   
   .activities-grid {
