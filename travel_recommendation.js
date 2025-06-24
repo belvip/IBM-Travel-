@@ -739,9 +739,87 @@ document.addEventListener('DOMContentLoaded', function() {
         return results; // Simplified for now
     }
 
-    // Nearby functionality
+    // Nearby functionality - FIXED IMPLEMENTATION
     window.showNearbyRecommendations = function() {
-        alert('Nearby recommendations feature available');
+        if (!navigator.geolocation) {
+            alert('Geolocation is not supported by this browser');
+            return;
+        }
+        
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+                const nearbyResults = findNearbyDestinations(userLat, userLng);
+                displayResults(nearbyResults);
+            },
+            function(error) {
+                if (error.code === error.PERMISSION_DENIED) {
+                    alert('Location access denied. Please enable location services.');
+                } else {
+                    alert('Unable to get your location. Please try again.');
+                }
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 60000
+            }
+        );
+    }
+    
+    function findNearbyDestinations(userLat, userLng) {
+        if (!travelData) return [];
+        
+        const nearbyDestinations = [];
+        const maxDistance = 2000; // Increased radius for testing
+        const allDestinations = [];
+        
+        // Add countries/cities
+        if (travelData.countries) {
+            travelData.countries.forEach(country => {
+                country.cities.forEach(city => {
+                    allDestinations.push({...city, type: 'city', country: country.name});
+                });
+            });
+        }
+        
+        // Add other categories
+        ['beaches', 'historical_sites', 'national_parks', 'cultural_experiences', 'unesco_sites'].forEach(category => {
+            if (travelData[category]) {
+                travelData[category].forEach(item => {
+                    allDestinations.push({...item, type: category.replace('_', ' ')});
+                });
+            }
+        });
+        
+        // Calculate distances
+        allDestinations.forEach(destination => {
+            const destCoords = getDestinationCoordinates(destination.name, destination.country || destination.type);
+            if (destCoords.lat !== 0 || destCoords.lng !== 0) {
+                const distance = calculateDistance(userLat, userLng, destCoords.lat, destCoords.lng);
+                
+                if (distance <= maxDistance) {
+                    nearbyDestinations.push({
+                        ...destination,
+                        distance: Math.round(distance)
+                    });
+                }
+            }
+        });
+        
+        return nearbyDestinations.sort((a, b) => a.distance - b.distance).slice(0, 10);
+    }
+    
+    function calculateDistance(lat1, lng1, lat2, lng2) {
+        const R = 6371; // Earth's radius in km
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLng = (lng2 - lng1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLng/2) * Math.sin(dLng/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
     }
 
     // Trending functionality
