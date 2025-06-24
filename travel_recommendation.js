@@ -431,6 +431,91 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Review System functionality - FULL IMPLEMENTATION
+    window.showReviewForm = function(itemId) {
+        const modal = document.createElement('div');
+        modal.className = 'review-modal';
+        modal.innerHTML = `
+            <div class="review-modal-content">
+                <h3>Write a Review</h3>
+                <div class="rating-input">
+                    <label>Rating:</label>
+                    <div class="stars-input">
+                        ${[1,2,3,4,5].map(i => `<span class="star" data-rating="${i}">☆</span>`).join('')}
+                    </div>
+                </div>
+                <textarea id="reviewText" placeholder="Share your experience..." rows="4"></textarea>
+                <div class="review-actions">
+                    <button onclick="window.submitReview('${itemId}')" class="submit-review-btn">Submit Review</button>
+                    <button onclick="window.closeReviewModal()" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        const stars = modal.querySelectorAll('.star');
+        let selectedRating = 0;
+        
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.dataset.rating);
+                updateStars(stars, selectedRating);
+            });
+        });
+        
+        function updateStars(stars, rating) {
+            stars.forEach((star, index) => {
+                star.textContent = index < rating ? '★' : '☆';
+                star.classList.toggle('selected', index < rating);
+            });
+        }
+        
+        modal.selectedRating = () => selectedRating;
+    }
+    
+    window.submitReview = function(itemId) {
+        const modal = document.querySelector('.review-modal');
+        const reviewText = document.getElementById('reviewText').value.trim();
+        const rating = modal.selectedRating();
+        
+        if (rating === 0) {
+            alert('Please select a rating');
+            return;
+        }
+        
+        if (!reviewText) {
+            alert('Please write a review');
+            return;
+        }
+        
+        if (!reviews[itemId]) {
+            reviews[itemId] = [];
+        }
+        
+        reviews[itemId].push({
+            rating: rating,
+            text: reviewText,
+            date: new Date().toLocaleDateString(),
+            id: Date.now()
+        });
+        
+        localStorage.setItem('destinationReviews', JSON.stringify(reviews));
+        window.closeReviewModal();
+        
+        const currentResults = document.getElementById('searchResults')?.dataset.results;
+        if (currentResults) {
+            displayResults(JSON.parse(currentResults));
+        }
+    }
+    
+    window.closeReviewModal = function() {
+        const modal = document.querySelector('.review-modal');
+        if (modal) {
+            modal.remove();
+        }
+    }
+
     // Map functionality - FULL IMPLEMENTATION
     window.showMap = function() {
         const currentResults = document.getElementById('searchResults')?.dataset.results;
@@ -671,11 +756,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.showTrendingDestinations = function() {
         alert('Trending destinations feature available');
-    }
-
-    // Review functionality
-    window.showReviewForm = function(itemId) {
-        alert('Review system available');
     }
 
     // Coordinates for weather and maps
