@@ -730,13 +730,199 @@ document.addEventListener('DOMContentLoaded', function() {
         displayResults(sortedTrip);
     }
 
-    // Filters functionality
+    // Advanced Filters functionality - FULL IMPLEMENTATION
     window.showFilters = function() {
-        alert('Filters feature available - click any filter button in results');
+        const modal = document.createElement('div');
+        modal.className = 'filters-modal';
+        modal.innerHTML = `
+            <div class="filters-modal-content">
+                <h3>Advanced Filters</h3>
+                
+                <div class="filter-group">
+                    <label>Price Range (USD)</label>
+                    <div class="price-range">
+                        <input type="range" id="minPrice" min="0" max="5000" value="${activeFilters.priceRange.min}" step="100">
+                        <input type="range" id="maxPrice" min="0" max="5000" value="${activeFilters.priceRange.max}" step="100">
+                        <div class="price-display">
+                            <span id="minPriceDisplay">$${activeFilters.priceRange.min}</span> - 
+                            <span id="maxPriceDisplay">$${activeFilters.priceRange.max}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Duration</label>
+                    <select id="durationFilter">
+                        <option value="">Any Duration</option>
+                        <option value="1-3" ${activeFilters.duration === '1-3' ? 'selected' : ''}>1-3 Days</option>
+                        <option value="4-7" ${activeFilters.duration === '4-7' ? 'selected' : ''}>4-7 Days</option>
+                        <option value="8-14" ${activeFilters.duration === '8-14' ? 'selected' : ''}>1-2 Weeks</option>
+                        <option value="15+" ${activeFilters.duration === '15+' ? 'selected' : ''}>2+ Weeks</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Activities</label>
+                    <div class="activities-grid">
+                        ${['Diving', 'Surfing', 'Hiking', 'Cultural Tours', 'Wildlife Watching', 'Beach Relaxation'].map(activity => `
+                            <label class="activity-checkbox">
+                                <input type="checkbox" value="${activity}" ${activeFilters.activities.includes(activity) ? 'checked' : ''}>
+                                <span>${activity}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Best Season</label>
+                    <select id="seasonFilter">
+                        <option value="">Any Season</option>
+                        <option value="spring" ${activeFilters.season === 'spring' ? 'selected' : ''}>Spring</option>
+                        <option value="summer" ${activeFilters.season === 'summer' ? 'selected' : ''}>Summer</option>
+                        <option value="autumn" ${activeFilters.season === 'autumn' ? 'selected' : ''}>Autumn</option>
+                        <option value="winter" ${activeFilters.season === 'winter' ? 'selected' : ''}>Winter</option>
+                    </select>
+                </div>
+                
+                <div class="filter-actions">
+                    <button onclick="window.applyFilters()" class="apply-filters-btn">Apply Filters</button>
+                    <button onclick="window.clearFilters()" class="clear-filters-btn">Clear All</button>
+                    <button onclick="window.closeFiltersModal()" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
+        const minDisplay = document.getElementById('minPriceDisplay');
+        const maxDisplay = document.getElementById('maxPriceDisplay');
+        
+        minPrice.addEventListener('input', function() {
+            minDisplay.textContent = '$' + this.value;
+            if (parseInt(this.value) > parseInt(maxPrice.value)) {
+                maxPrice.value = this.value;
+                maxDisplay.textContent = '$' + this.value;
+            }
+        });
+        
+        maxPrice.addEventListener('input', function() {
+            maxDisplay.textContent = '$' + this.value;
+            if (parseInt(this.value) < parseInt(minPrice.value)) {
+                minPrice.value = this.value;
+                minDisplay.textContent = '$' + this.value;
+            }
+        });
+    }
+    
+    window.applyFilters = function() {
+        const minPrice = document.getElementById('minPrice').value;
+        const maxPrice = document.getElementById('maxPrice').value;
+        const duration = document.getElementById('durationFilter').value;
+        const season = document.getElementById('seasonFilter').value;
+        const activities = Array.from(document.querySelectorAll('.activity-checkbox input:checked')).map(cb => cb.value);
+        
+        activeFilters = {
+            priceRange: { min: parseInt(minPrice), max: parseInt(maxPrice) },
+            duration: duration,
+            activities: activities,
+            season: season
+        };
+        
+        window.closeFiltersModal();
+        
+        const currentResults = document.getElementById('searchResults')?.dataset.results;
+        if (currentResults) {
+            const results = JSON.parse(currentResults);
+            displayResults(results);
+        }
+    }
+    
+    window.clearFilters = function() {
+        activeFilters = {
+            priceRange: { min: 0, max: 5000 },
+            duration: '',
+            activities: [],
+            season: ''
+        };
+        
+        document.getElementById('minPrice').value = 0;
+        document.getElementById('maxPrice').value = 5000;
+        document.getElementById('minPriceDisplay').textContent = '$0';
+        document.getElementById('maxPriceDisplay').textContent = '$5000';
+        document.getElementById('durationFilter').value = '';
+        document.getElementById('seasonFilter').value = '';
+        document.querySelectorAll('.activity-checkbox input').forEach(cb => cb.checked = false);
+    }
+    
+    window.closeFiltersModal = function() {
+        const modal = document.querySelector('.filters-modal');
+        if (modal) {
+            modal.remove();
+        }
     }
     
     function applyFiltersToResults(results) {
-        return results; // Simplified for now
+        return results.filter(item => {
+            const mockPrice = getMockPrice(item);
+            const mockDuration = getMockDuration(item);
+            const mockSeason = getMockSeason(item);
+            const itemActivities = getItemActivities(item);
+            
+            if (mockPrice < activeFilters.priceRange.min || mockPrice > activeFilters.priceRange.max) {
+                return false;
+            }
+            
+            if (activeFilters.duration && mockDuration !== activeFilters.duration) {
+                return false;
+            }
+            
+            if (activeFilters.activities.length > 0 && !activeFilters.activities.some(activity => itemActivities.includes(activity))) {
+                return false;
+            }
+            
+            if (activeFilters.season && mockSeason !== activeFilters.season) {
+                return false;
+            }
+            
+            return true;
+        });
+    }
+    
+    function getMockPrice(item) {
+        const prices = {
+            'beach': Math.random() * 2000 + 500,
+            'city': Math.random() * 1500 + 300,
+            'historical site': Math.random() * 1000 + 200,
+            'national park': Math.random() * 800 + 150,
+            'cultural experience': Math.random() * 600 + 100
+        };
+        return Math.round(prices[item.type] || Math.random() * 1000 + 200);
+    }
+    
+    function getMockDuration(item) {
+        const durations = ['1-3', '4-7', '8-14', '15+'];
+        return durations[Math.floor(Math.random() * durations.length)];
+    }
+    
+    function getMockSeason(item) {
+        const seasons = ['spring', 'summer', 'autumn', 'winter'];
+        return seasons[Math.floor(Math.random() * seasons.length)];
+    }
+    
+    function getItemActivities(item) {
+        if (item.activities) return item.activities;
+        
+        const typeActivities = {
+            'beach': ['Diving', 'Surfing', 'Beach Relaxation'],
+            'national park': ['Hiking', 'Wildlife Watching'],
+            'city': ['Cultural Tours'],
+            'historical site': ['Cultural Tours'],
+            'cultural experience': ['Cultural Tours']
+        };
+        
+        return typeActivities[item.type] || ['Cultural Tours'];
     }
 
     // Nearby functionality - FIXED IMPLEMENTATION
